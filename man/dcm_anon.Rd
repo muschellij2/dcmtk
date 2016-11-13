@@ -6,7 +6,7 @@
 \usage{
 dcm_anon(file, rem_tags = dcmtk::removal_tags$tag, mod_tags = NULL,
   insert_tags = NULL, new_uids = TRUE, new_date = NULL, new_time = NULL,
-  verbose = FALSE, ...)
+  verbose_flag = FALSE, ...)
 }
 \arguments{
 \item{file}{DICOM Image}
@@ -25,7 +25,8 @@ names of that vector as the tags.}
 
 \item{new_time}{time to be change time fields to.}
 
-\item{verbose}{print diagnostic messages}
+\item{verbose_flag}{print diagnostic messages, using
+\code{--verbose}}
 
 \item{...}{Additional arguments to add to \code{\link{dcmodify}}}
 }

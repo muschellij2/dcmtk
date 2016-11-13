@@ -10,7 +10,8 @@
 #' @param new_uids Should new unique identifiers (IDs) be generated
 #' @param new_date date to be change date fields to.
 #' @param new_time time to be change time fields to.
-#' @param verbose print diagnostic messages
+#' @param verbose_flag print diagnostic messages, using
+#' \code{--verbose}
 #' @param ... Additional arguments to add to \code{\link{dcmodify}}
 #'
 #' @return Result of \code{dcmodify} command
@@ -28,7 +29,7 @@ dcm_anon = function(
   new_uids = TRUE,
   new_date = NULL,
   new_time = NULL,
-  verbose = FALSE,
+  verbose_flag = FALSE,
   ...
 ) {
 
@@ -147,7 +148,7 @@ dcm_anon = function(
       "--gen-ser-uid --gen-stud-uid --gen-inst-uid")
   }
 
-  if (verbose) {
+  if (verbose_flag) {
     add_opts = paste(add_opts, "--verbose")
   }
   args$frontopts = paste(add_opts, args$frontopts)
