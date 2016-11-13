@@ -28,7 +28,7 @@ dcm_anon = function(
   new_uids = TRUE,
   new_date = NULL,
   new_time = NULL,
-  verbose = TRUE,
+  verbose = FALSE,
   ...
 ) {
 

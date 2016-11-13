@@ -6,7 +6,7 @@
 \usage{
 dcm_anon(file, rem_tags = dcmtk::removal_tags$tag, mod_tags = NULL,
   insert_tags = NULL, new_uids = TRUE, new_date = NULL, new_time = NULL,
-  verbose = TRUE, ...)
+  verbose = FALSE, ...)
 }
 \arguments{
 \item{file}{DICOM Image}
