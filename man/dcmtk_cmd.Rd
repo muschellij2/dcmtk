@@ -2,20 +2,33 @@
 % Please edit documentation in R/dcmtk_cmd.R
 \name{dcmtk_cmd}
 \alias{dcmtk_cmd}
-\title{Get path for DCMTK command}
+\title{DCMTK Command Wrapper}
 \usage{
-dcmtk_cmd(cmd)
+dcmtk_cmd(cmd, file = NULL, opts = "", frontopts = "", verbose = TRUE,
+  intern = FALSE, run = TRUE, ...)
 }
 \arguments{
-\item{cmd}{DCMTK command name}
+\item{cmd}{(character) DCMTK command}
+
+\item{file}{(character) files to be manipulated}
+
+\item{opts}{(character) operations to be passed to \code{cmd}}
+
+\item{frontopts}{(character) options/character to put in before filename}
+
+\item{verbose}{(logical) print out command before running}
+
+\item{intern}{(logical) to be passed to \code{\link{system}}}
+
+\item{run}{(logical) should the command be executed?}
+
+\item{...}{additional arguments passed to \code{\link{system}}.}
 }
 \value{
-Logical \code{TRUE} if command is available.
+Result from system command, depends if intern is
+\code{TRUE} or \code{FALSE}.
 }
 \description{
-Uses \code{Sys.which} to check if command is in the PATH.
-}
-\examples{
-dcmtk_cmd("dcmodify")
+This function calls DCMTK command passed to \code{cmd}.
 }
 

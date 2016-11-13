@@ -1,2 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^all_functions\.txt$
+^removal_tags\.csv$
+^removal_tags\.txt$
+remove_tags\.R

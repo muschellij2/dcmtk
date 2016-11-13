@@ -1,0 +1,140 @@
+Tag,Name,Action
+"0002, 0012",Implementation Class UID,empty
+"0002, 0013",Implementation Class UID,removed
+"0002, 0016",Source Application Entity Title,removed
+"0002, 0100",Private Information Creator UID,empty
+"0002, 0102",Private Information,empty
+"0010, 0010",Patient's Name,removed
+"0010, 0020",Patient ID,removed
+"0010, 0021",Issuer of Patient ID,empty
+"0010, 0022",Type of Patient ID,empty
+"0010, 0030",Patient's Birth Date,empty
+"0010, 0032",Patient's Birth Time,empty
+"0010, 0050",Patient's Insurance Plan Code Sequence,removed
+"0010, 0101",Patient's Primary Language Code Sequence,removed
+"0010, 0102",Patient's Primary Language Code Modifier Sequence,removed
+"0010, 1000",Other Patient IDs,empty
+"0010, 1001",Other Patient Names,empty
+"0010, 1002",Other Patient IDs Sequence,removed
+"0010, 1005",Patient's Birth Name,empty
+"0010, 1040",Patient's Address,empty
+"0010, 1050",Insurance Plan Identification (RET),empty
+"0010, 1060",Patient's Mother's Birth Name,empty
+"0010, 1080",Military Rank,empty
+"0010, 1081",Branch of Service,empty
+"0010, 1090",Medical Record Locator,empty
+"0010, 2150",Country of Residence,empty
+"0010, 2152",Region of Residence,empty
+"0010, 2154",Patient's Telephone Numbers,empty
+"0010, 2160",Ethnic Group,empty
+"0010, 2180",Occupation,empty
+"0010, 21b0",Additional Patient History,empty
+"0010, 21c0",Pregnancy Status,empty
+"0010, 21d0",Last Menstrual Date,empty
+"0010, 21f0",Patient's Religious Preference,removed
+"0010, 2202",Patient Species Code Sequence,removed
+"0010, 2203",Patient's Sex Neutered,empty
+"0010, 2293",Patient Breed Code Sequence,removed
+"0010, 2294",Breed Registration Sequence,removed
+"0010, 2295",Breed Registration Number,empty
+"0010, 2296",Breed Registry Code Sequence,removed
+"0010, 2297",Responsible Person,empty
+"0010, 2298",Responsible Person Role,empty
+"0010, 2299",Responsible Organization,empty
+"0008, 0080",Institution Name,empty
+"0008, 0081",Institution Address,empty
+"0008, 0082",Institution Code Sequence,removed
+"0008, 0090",Referring Physician's Name,empty
+"0008, 0092",Referring Physician's Address,empty
+"0008, 0094",Referring Physician's Telephone Numbers,empty
+"0008, 0096",Referring Physician Identification Sequence,removed
+"0008, 0116",Responsible Organization,empty
+"0008, 1048",Physician(s) of Record,empty
+"0008, 1049",Physician(s) of Record Identification Sequence,removed
+"0008, 1050",Performing Physician's Name,empty
+"0008, 1052",Performing Physician Identification Sequence,removed
+"0008, 1060",Name of Physician(s) Reading Study,empty
+"0008, 1062",Physician(s) Reading Study Identification Sequence,removed
+"0008, 1070",Operators' Name,empty
+"0008, 1072",Operator Identification Sequence,removed
+"0038, 0010",Admission ID,empty
+"0038, 0011",Issuer of Admission ID,empty
+"0038, 0016",Route of Admissions,empty
+"0038, 001a",Scheduled Admission Date (RET),empty
+"0038, 001b",Scheduled Admission Time (RET),empty
+"0038, 001c",Scheduled Discharge Date (RET),empty
+"0038, 001d",Scheduled Discharge Time (RET),empty
+"0038, 001e",Scheduled Patient Institution Residence (RET),empty
+"0038, 0020",Admitting Date,empty
+"0038, 0021",Admitting Time,empty
+"0038, 0030",Discharge Date (RET),empty
+"0038, 0032",Discharge Time (RET),empty
+"0038, 0040",Discharge Diagnosis Description (RET),empty
+"0038, 0044",Discharge Diagnosis Code Sequence (RET),removed
+"0038, 0300",Current Patient Location,empty
+"0038, 0400",Patient's Institution Residence,empty
+"0038, 0500",Patient State,empty
+"0020, 0010",Study ID,removed
+"0008, 0050",Accession Number,empty
+"0032, 000a",Study Status ID (RET),empty
+"0032, 000c",Study Priority ID (RET),empty
+"0032, 0012",Study ID Issuer (RET),empty
+"0032, 0032",Study Verified Date (RET),empty
+"0032, 0033",Study Verified Time (RET),empty
+"0032, 0034",Study Read Date (RET),empty
+"0032, 0035",Study Read Time (RET),empty
+"0032, 1000",Scheduled Study Start Date (RET),empty
+"0032, 1001",Scheduled Study Start Time (RET),empty
+"0032, 1010",Scheduled Study Stop Date (RET),empty
+"0032, 1011",Scheduled Study Stop Time (RET),empty
+"0032, 1020",Scheduled Study Location (RET),empty
+"0032, 1021",Scheduled Study Location AE Title (RET),empty
+"0032, 1030",Reason for Study (RET),empty
+"0032, 1031",Requesting Physician Identification Sequence,removed
+"0032, 1032",Requesting Physician,empty
+"0032, 1033",Requesting Service,empty
+"0032, 1040",Study Arrival Date (RET),empty
+"0032, 1041",Study Arrival Time (RET),empty
+"0032, 1050",Study Completion Date (RET),empty
+"0032, 1051",Study Completion Time (RET),empty
+"0032, 1055",Study Component Status ID (RET),empty
+"0032, 1060",Requested Procedure Description,empty
+"0032, 1064",Requested Procedure Code Sequence,removed
+"0032, 1070",Requested Contrast Agent,empty
+"0032, 4000",Study Comments,empty
+"0040, 2008",Order Entered By,empty
+"0040, 2009",Order Enterer's Location,empty
+"0040, 2010",Order Callback Phone Number,empty
+"0040, 0001",Scheduled Station AE Title,empty
+"0040, 0006",Scheduled Performing Physician's Name,empty
+"0040, 000b",Scheduled Performing Physician Identification Sequence,removed
+"0040, 0010",Scheduled Station Name,empty
+"0040, 0011",Scheduled Procedure Step Location,empty
+"0040, 0012",Pre-Medication,empty
+"0040, 0241",Performed Station AE Title,empty
+"0040, 0242",Performed Station Name,empty
+"0040, 0243",Performed Location,empty
+"0040, 0296",Billing Item Sequence,removed
+"4008, 0042",Results ID Issuer (RET),empty
+"4008, 010c",Interpretation Author (RET),empty
+"4008, 0114",Physician Approving Interpretation (RET),empty
+"4008, 0119",Distribution Name (RET),empty
+"4008, 011a",Distribution Address (RET),empty
+"4008, 0202",Interpretation ID Issuer (RET),empty
+"0008, 1010",Station Name,empty
+"0008, 1040",Institutional Department Name,empty
+"0008, 1090",Manufacturer's Model Name,empty
+"0018, 1000",Device Serial Number,empty
+"0018, 1016",Secondary Capture Device Manufacturer,empty
+"0018, 1017",Hardcopy Device Manufacturer,empty
+"0018, 1018",Secondary Capture Device Manufacturer's Model Name,empty
+"0018, 1019",Secondary Capture Device Software Version(s),empty
+"0018, 101a",Hardcopy Device Software Version,empty
+"0018, 101b",Hardcopy Device Manufacturer's Model Name,empty
+"0018, 1020",Software Version(s),empty
+"0018, 1200",Date of Last Calibration,empty
+"0018, 1201",Time of Last Calibration,empty
+"0018, 700c",Date of Last Detector Calibration,empty
+"0018, 700e",Time of Last Detector Calibration,empty
+"0018, 7010",Exposures on Detector Since Last Calibration,empty
+"0018, 7011",Exposures on Detector Since Manufactured,empty
