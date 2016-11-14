@@ -4,3 +4,5 @@
 ^removal_tags\.csv$
 ^removal_tags\.txt$
 remove_tags\.R
+
+DICOMLookup\.htm

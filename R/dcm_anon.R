@@ -33,13 +33,14 @@ dcm_anon = function(
   ...
 ) {
 
-  # args = as.list(...)
-  args = list()
+  args = as.list(...)
+  # args = list()
 
   tfile = tempfile()
   file.copy(file, tfile)
   args$file = tfile
-  hdr = read_dicom_header(tfile)
+
+  hdr = read_dicom_header(args$file)
 
   hdr = hdr[ !is.na(hdr$value), ]
 
@@ -133,12 +134,14 @@ dcm_anon = function(
   }
 
   # Modifier Tags
-  insert_tags = run_tags(insert_tags,
-                         head_opt = "--insert",
-                         type = "Insert")
-  mod_tags = run_tags(mod_tags,
-                      head_opt = "--modify",
-                      type = "Modifier")
+  insert_tags = run_tags(
+    insert_tags,
+    head_opt = "--insert",
+    type = "Insert")
+  mod_tags = run_tags(
+    mod_tags,
+    head_opt = "--modify",
+    type = "Modifier")
 
   add_opts = paste(add_opts, insert_tags)
   add_opts = paste(add_opts, mod_tags)
@@ -151,10 +154,10 @@ dcm_anon = function(
   if (verbose_flag) {
     add_opts = paste(add_opts, "--verbose")
   }
+
   args$frontopts = paste(add_opts, args$frontopts)
   res = do.call("dcmodify", args = args)
   rm(res)
-  # new_hdr = read_dicom_header(args$file)
 
   return(args$file)
 }

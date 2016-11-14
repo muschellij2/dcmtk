@@ -1,0 +1,7 @@
+load("/Users/johnmuschelli/Dropbox/Packages/dcmtk/data/datetime_tags.rda")
+ls()
+datetime_tags
+q('no')
+load("/Users/johnmuschelli/Dropbox/Packages/dcmtk/data/date_tags.rda")
+date_tags
+q('no')
