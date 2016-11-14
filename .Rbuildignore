@@ -8,3 +8,5 @@ remove_tags\.R
 DICOMLookup\.htm
 dicom-dict\.txt
 d_anon\.txt
+
+large_dicom_dump\.html
