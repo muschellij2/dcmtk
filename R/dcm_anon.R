@@ -33,7 +33,7 @@ dcm_anon = function(
   ...
 ) {
 
-  args = as.list(...)
+  args = list(...)
   # args = list()
 
   # tfile = tempfile()
@@ -41,7 +41,6 @@ dcm_anon = function(
   args$file = file
 
   hdr = read_dicom_header(args$file)
-
   hdr = hdr[ !is.na(hdr$value), ]
 
   ####################################
@@ -77,7 +76,7 @@ dcm_anon = function(
   rem_tags = tolower(rem_tags)
   rem_tags = rem_tags[ rem_tags %in% all_tags ]
 
-  add_opts = "--ignore-errors --erase-private"
+  add_opts = "--ignore-errors --erase-private --no-backup"
 
   ###################################
   # Removal tags

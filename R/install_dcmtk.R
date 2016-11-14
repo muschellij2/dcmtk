@@ -16,7 +16,7 @@ install_dcmtk = function(
            "linux_dynamic",
            "windows"),
   force = FALSE) {
-  type = "osx"
+  # type = "osx"
 
   if (missing(type)) {
     sysname = tolower(Sys.info()["sysname"])
