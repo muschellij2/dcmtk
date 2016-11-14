@@ -100,7 +100,7 @@ parse_hdr = function(hdr){
   df$value[
     df$value %in% c("(no value available)",
                     "(not loaded)") ] = NA
-  df$file_index = fname
+  df$file = fname
 
   return(df)
 }
