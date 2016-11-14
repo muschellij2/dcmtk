@@ -11,6 +11,9 @@ dcmhd(file)
 }
 \arguments{
 \item{file}{Name of DICOM file}
+
+\item{replace_names}{logical indicating if unknown tag names should be
+inferred from \code{dicom_tags}}
 }
 \value{
 Character vector of header information
