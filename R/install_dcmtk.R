@@ -46,7 +46,9 @@ install_dcmtk = function(
 
 
   dcmtk_dir = system.file(package = "dcmtk")
-  fols = c("bin", "share", "lib", "include", "etc")
+  fols = c("bin", "share",
+           # "lib", "include",
+           "etc")
   out_fols = file.path(dcmtk_dir, fols)
 
   if (!all(file.exists(out_fols)) || force) {
