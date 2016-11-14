@@ -5,7 +5,7 @@
 \alias{read_dicom_header}
 \title{Read DICOM File}
 \usage{
-read_dicom_header(file)
+read_dicom_header(file, replace_names = FALSE)
 
 dcmhd(file)
 }

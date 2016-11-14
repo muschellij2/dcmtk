@@ -10,7 +10,7 @@
 #' \describe{
 #' \item{tag}{the tag identifier for the field }
 #' \item{name}{the name of the field }
-#' \item{keyword}{more readable name}
+#' \item{keyword}{ no space version of name - a better lookup ID}
 #' \item{vr}{value representation}
 #' \item{vm}{value multiplier}
 #' \item{retired}{indication of retired tag}

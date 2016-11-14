@@ -98,22 +98,6 @@ save(datetime_tags,
      compression_level = 9)
 
 
-tab = read_html("large_dicom_dump.html")
-tables = html_nodes(tab, "table")
-tab = html_table(tables)
-tab = tab[[2]]
-hd = tab[1,,]
-hd = unlist(hd)
-miss = hd == ""
-stopifnot(sum(miss) == 1)
-hd[miss] = "retired"
-colnames(tab) = tolower(trimws(hd))
-tab = tab[-1,]
-dicom_tags = tab
-save(dicom_tags,
-     file = "data/dicom_tags.rda",
-     compression_level = 9)
-
 
 # time_tags = utab %>%
 #   filter(grepl("time", Attribute),
