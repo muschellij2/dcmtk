@@ -11,7 +11,30 @@ parse_hdr = function(hdr){
   # hdr = xhdr
 
   hdr = trimws(hdr)
-  hdr = hdr[ grepl("^\\(", hdr)]
+
+  na_locf = function(x) {
+    ind = !is.na(x)
+    cs = cumsum(ind)
+    ss = split(x, cs)
+    ss = lapply(ss, function(r){
+      r = rep(r[1], length = length(r))
+    })
+    ss = unlist(ss)
+    names(ss) = NULL
+    ss
+  }
+  ############################
+  # Need this for filenames
+  ############################
+  fname = rep(NA, length = length(hdr))
+  fname_ind = grep("^#\\s*dcmdump.*:(.*)", tolower(hdr))
+  fname[fname_ind] = gsub("^.*:(.*)", "\\1", hdr[fname_ind])
+  fname[fname_ind] = trimws(fname[fname_ind])
+  fname = na_locf(fname)
+
+  tags = grepl("^\\(", hdr)
+  hdr = hdr[ tags ]
+  fname = fname[ tags ]
   hdr = gsub("Unknown Tag & Data",
              "UnknownTagAndData",
              hdr, fixed = TRUE)
@@ -77,6 +100,7 @@ parse_hdr = function(hdr){
   df$value[
     df$value %in% c("(no value available)",
                     "(not loaded)") ] = NA
+  df$file_index = fname
 
   return(df)
 }

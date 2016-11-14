@@ -8,7 +8,7 @@
 read_dicom_header = function(file) {
 
   hdr = dcmdump(file = file,
-                opts = "-q --print-all --load-short")
+                opts = "-q --print-all --load-short --print-filename")
   hdr = parse_hdr(hdr)
   return(hdr)
 }
