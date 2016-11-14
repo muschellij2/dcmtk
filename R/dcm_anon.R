@@ -36,9 +36,9 @@ dcm_anon = function(
   args = as.list(...)
   # args = list()
 
-  tfile = tempfile()
-  file.copy(file, tfile)
-  args$file = tfile
+  # tfile = tempfile()
+  # file.copy(file, tfile)
+  args$file = file
 
   hdr = read_dicom_header(args$file)
 
