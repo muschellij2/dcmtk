@@ -62,7 +62,10 @@ parse_hdr = function(hdr){
       x$hdr[1] = paste0(x$hdr, collapse = "\n")
       x[1, , drop = FALSE]
     })
-    df = do.call("rbind", ss)
+    df = do.call("rbind", ss,
+                 args = list(
+                 stringsAsFactors = FALSE)
+    )
   }
   rm(list = "ss")
 
@@ -95,7 +98,9 @@ parse_hdr = function(hdr){
   if (!icheck) {
     stop("Header not likely parsed correctly")
   }
-  info = do.call("rbind", info)
+  info = do.call("rbind", info,
+                 args = list(
+                   stringsAsFactors = FALSE))
   colnames(info) = c("tag", "val_rep", "value")
 
   ######################################
@@ -117,7 +122,9 @@ parse_hdr = function(hdr){
     if (!check) {
       warning("Header not likely parsed correctly")
     }
-    extra = do.call("rbind", ss)
+    extra = do.call("rbind", ss,
+                    args = list(
+                      stringsAsFactors = FALSE))
     colnames(extra) = c("length", "val_mult", "name")
     info = cbind(info, extra)
   }

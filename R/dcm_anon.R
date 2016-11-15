@@ -81,11 +81,11 @@ dcm_anon = function(
   ###################################
   # Removal tags
   ###################################
-  if (!is.null(rem_tags)) {
+  if (!is.null(rem_tags) & length(rem_tags) > 0) {
     rem_tags = paste0('--erase-all "', rem_tags, '"')
     rem_tags = paste(rem_tags, collapse = " ")
+    add_opts = paste(add_opts, rem_tags)
   }
-  add_opts = paste(add_opts, rem_tags)
 
 
   ###################################
