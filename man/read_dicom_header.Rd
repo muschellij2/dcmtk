@@ -5,7 +5,8 @@
 \alias{read_dicom_header}
 \title{Read DICOM File}
 \usage{
-read_dicom_header(file, replace_names = FALSE, add_opts = "")
+read_dicom_header(file, replace_names = FALSE, add_opts = "",
+  recursive = FALSE)
 
 dcmhd(file)
 }
@@ -18,6 +19,9 @@ inferred from \code{dicom_tags}}
 \item{add_opts}{additional options to pass to \code{\link{dcmdump}}.
 The flags already added are
 \code{-q --print-all --load-short --print-filename}}
+
+\item{recursive}{logical indicating if the \code{--recurse} flag be passed to
+\code{\link{dcmdump}}}
 }
 \value{
 Character vector of header information

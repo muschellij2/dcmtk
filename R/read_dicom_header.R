@@ -7,12 +7,20 @@
 #' @param add_opts additional options to pass to \code{\link{dcmdump}}.
 #' The flags already added are
 #' \code{-q --print-all --load-short --print-filename}
+#' @param recursive logical indicating if the \code{--recurse} flag be passed to
+#' \code{\link{dcmdump}}
 #'
 #' @return Character vector of header information
 #' @export
 read_dicom_header = function(file,
                              replace_names = FALSE,
-                             add_opts = "") {
+                             add_opts = "",
+                             recursive = FALSE) {
+  if (recursive) {
+    add_opts = c("--scan-directories",
+                 "--recursive",
+                 add_opts)
+  }
   add_opts = paste(add_opts, collapse = " ")
   opts = paste("-q --print-all --load-short --print-filename",
                     add_opts)
