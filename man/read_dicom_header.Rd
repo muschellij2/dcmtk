@@ -5,7 +5,7 @@
 \alias{read_dicom_header}
 \title{Read DICOM File}
 \usage{
-read_dicom_header(file, replace_names = FALSE)
+read_dicom_header(file, replace_names = FALSE, add_opts = "")
 
 dcmhd(file)
 }
@@ -14,6 +14,10 @@ dcmhd(file)
 
 \item{replace_names}{logical indicating if unknown tag names should be
 inferred from \code{dicom_tags}}
+
+\item{add_opts}{additional options to pass to \code{\link{dcmdump}}.
+The flags already added are
+\code{-q --print-all --load-short --print-filename}}
 }
 \value{
 Character vector of header information

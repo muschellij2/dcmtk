@@ -4,13 +4,20 @@
 #' @param file Name of DICOM file
 #' @param replace_names logical indicating if unknown tag names should be
 #' inferred from \code{dicom_tags}
+#' @param add_opts additional options to pass to \code{\link{dcmdump}}.
+#' The flags already added are
+#' \code{-q --print-all --load-short --print-filename}
 #'
 #' @return Character vector of header information
 #' @export
-read_dicom_header = function(file, replace_names = FALSE) {
+read_dicom_header = function(file,
+                             replace_names = FALSE,
+                             add_opts = "") {
 
+  opts = paste0("-q --print-all --load-short --print-filename",
+                    add_opts)
   hdr = dcmdump(file = file,
-                opts = "-q --print-all --load-short --print-filename")
+                opts = )
   hdr = parse_hdr(hdr)
   if (replace_names) {
     hdr$ind = seq(nrow(hdr))
