@@ -1,7 +1,8 @@
 #' @title Read DICOM File
 #' @description Reads in the DICOM header from a file
 #'
-#' @param file Name of DICOM file
+#' @param file DICOM input file or directory.  If \code{recursivee = TRUE},
+#' then this will be the pattern to match within \code{path}
 #' @param replace_names logical indicating if unknown tag names should be
 #' inferred from \code{dicom_tags}
 #' @param add_opts additional options to pass to \code{\link{dcmdump}}.
@@ -9,21 +10,27 @@
 #' \code{-q --print-all --load-short --print-filename}
 #' @param recursive logical indicating if the \code{--recurse} flag be passed to
 #' \code{\link{dcmdump}}
+#' @param path if \code{recursive = TRUE}, then this will the path scanned.
 #'
 #' @return Character vector of header information
 #' @export
-read_dicom_header = function(file,
-                             replace_names = FALSE,
-                             add_opts = "",
-                             recursive = FALSE) {
+read_dicom_header = function(
+  file = "*.dcm",
+  replace_names = FALSE,
+  add_opts = "",
+  recursive = FALSE,
+  path = "."
+) {
   if (recursive) {
-    add_opts = c("--scan-directories",
+    add_opts = c(add_opts,
                  "--recurse",
-                 add_opts)
+                 paste0("--scan-directories ",
+                        normalizePath(path)),
+                 "--scan-pattern")
   }
   add_opts = paste(add_opts, collapse = " ")
   opts = paste("-q --print-all --load-short --print-filename",
-                    add_opts)
+               add_opts)
   hdr = dcmdump(file = file,
                 frontopts = opts)
   hdr = parse_hdr(hdr)

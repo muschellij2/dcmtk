@@ -5,13 +5,14 @@
 \alias{read_dicom_header}
 \title{Read DICOM File}
 \usage{
-read_dicom_header(file, replace_names = FALSE, add_opts = "",
-  recursive = FALSE)
+read_dicom_header(file = "*.dcm", replace_names = FALSE, add_opts = "",
+  recursive = FALSE, path = ".")
 
 dcmhd(file)
 }
 \arguments{
-\item{file}{Name of DICOM file}
+\item{file}{DICOM input file or directory.  If \code{recursivee = TRUE},
+then this will be the pattern to match within \code{path}}
 
 \item{replace_names}{logical indicating if unknown tag names should be
 inferred from \code{dicom_tags}}
@@ -22,6 +23,8 @@ The flags already added are
 
 \item{recursive}{logical indicating if the \code{--recurse} flag be passed to
 \code{\link{dcmdump}}}
+
+\item{path}{if \code{recursive = TRUE}, then this will the path scanned.}
 }
 \value{
 Character vector of header information
