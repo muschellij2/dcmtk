@@ -55,13 +55,16 @@ parse_hdr = function(hdr){
   df$tag_num = cumsum(df$tag_num)
 
   ss = split(df, df$tag_num)
-  ss = lapply(ss, function(x){
-    x$hdr[1] = paste0(x$hdr, collapse = "\n")
-    x[1, , drop = FALSE]
-  })
-  df = do.call("rbind", ss)
+  nrows = sapply(ss, nrow)
+  nrows = nrows > 1
+  if (any(nrows)) {
+    ss[nrows] = lapply(ss[nrows], function(x){
+      x$hdr[1] = paste0(x$hdr, collapse = "\n")
+      x[1, , drop = FALSE]
+    })
+    df = do.call("rbind", ss)
+  }
   rm(list = "ss")
-
 
 
   ss = strsplit(df$hdr, "# ")
