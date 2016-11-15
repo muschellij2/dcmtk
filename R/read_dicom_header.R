@@ -18,7 +18,7 @@ read_dicom_header = function(file,
                              recursive = FALSE) {
   if (recursive) {
     add_opts = c("--scan-directories",
-                 "--recursive",
+                 "--recurse",
                  add_opts)
   }
   add_opts = paste(add_opts, collapse = " ")
