@@ -32,14 +32,39 @@ parse_hdr = function(hdr){
   fname[fname_ind] = trimws(fname[fname_ind])
   fname = na_locf(fname)
 
-  tags = grepl("^\\(", hdr)
-  hdr = hdr[ tags ]
-  fname = fname[ tags ]
-  hdr = gsub("Unknown Tag & Data",
+  df = data.frame(hdr = hdr,
+                  file = fname,
+                  stringsAsFactors = FALSE)
+  ############################
+  # Multi-line stuff
+  ############################
+  tags = !grepl("^#", df$hdr) & df$hdr != ""
+  df = df[tags,]
+  # # tags = grepl("^\\(", hdr)
+  # hdr = hdr[ tags ]
+  # fname = fname[ tags ]
+  df$hdr = gsub("Unknown Tag & Data",
              "UnknownTagAndData",
-             hdr, fixed = TRUE)
+             df$hdr, fixed = TRUE)
 
-  ss = strsplit(hdr, "# ")
+
+  ############################
+  # Each Tag should be one line
+  ############################
+  df$tag_num = grepl("^\\(", df$hdr)
+  df$tag_num = cumsum(df$tag_num)
+
+  ss = split(df, df$tag_num)
+  ss = lapply(ss, function(x){
+    x$hdr[1] = paste0(x$hdr, collapse = "\n")
+    x[1, , drop = FALSE]
+  })
+  df = do.call("rbind", ss)
+  rm(list = "ss")
+
+
+
+  ss = strsplit(df$hdr, "# ")
   ss = lapply(ss, trimws)
 
   ##################################
@@ -93,14 +118,12 @@ parse_hdr = function(hdr){
     colnames(extra) = c("length", "val_mult", "name")
     info = cbind(info, extra)
   }
+  df = cbind(df, info)
+  df$hdr = df$tag_num = NULL
 
-
-  df = data.frame(info,
-                  stringsAsFactors = FALSE)
   df$value[
     df$value %in% c("(no value available)",
                     "(not loaded)") ] = NA
-  df$file = fname
 
   return(df)
 }
