@@ -13,11 +13,11 @@
 read_dicom_header = function(file,
                              replace_names = FALSE,
                              add_opts = "") {
-
-  opts = paste0("-q --print-all --load-short --print-filename",
+  add_opts = paste(add_opts, collapse = " ")
+  opts = paste("-q --print-all --load-short --print-filename",
                     add_opts)
   hdr = dcmdump(file = file,
-                opts = )
+                frontopts = opts)
   hdr = parse_hdr(hdr)
   if (replace_names) {
     hdr$ind = seq(nrow(hdr))
