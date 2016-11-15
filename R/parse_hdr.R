@@ -62,10 +62,7 @@ parse_hdr = function(hdr){
       x$hdr[1] = paste0(x$hdr, collapse = "\n")
       x[1, , drop = FALSE]
     })
-    df = do.call("rbind", ss,
-                 args = list(
-                 stringsAsFactors = FALSE)
-    )
+    df = do.call("rbind", ss)
   }
   rm(list = "ss")
 
@@ -98,10 +95,9 @@ parse_hdr = function(hdr){
   if (!icheck) {
     stop("Header not likely parsed correctly")
   }
-  info = do.call("rbind", info,
-                 args = list(
-                   stringsAsFactors = FALSE))
+  info = do.call("rbind", info)
   colnames(info) = c("tag", "val_rep", "value")
+
 
   ######################################
   # Grabbing the information
@@ -122,12 +118,12 @@ parse_hdr = function(hdr){
     if (!check) {
       warning("Header not likely parsed correctly")
     }
-    extra = do.call("rbind", ss,
-                    args = list(
-                      stringsAsFactors = FALSE))
+    extra = do.call("rbind",ss)
     colnames(extra) = c("length", "val_mult", "name")
     info = cbind(info, extra)
   }
+  info = data.frame(info,
+                    stringsAsFactors = FALSE)
   df = cbind(df, info)
   df$hdr = df$tag_num = NULL
 
