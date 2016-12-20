@@ -43,4 +43,3 @@ anon = dcm_anon(file, new_date = "20060101")
 new_hd = read_dicom_header(anon)
 }
 }
-

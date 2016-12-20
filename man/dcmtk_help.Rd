@@ -18,4 +18,3 @@ Prints help output and returns output as character vector
 This function takes in the function and returns the
 help from DCMTK for that function
 }
-

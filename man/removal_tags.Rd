@@ -17,4 +17,3 @@ A \code{data.frame} of tags to remove when doing DICOM
 anonymization.
 }
 \keyword{datasets}
-

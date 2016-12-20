@@ -16,4 +16,3 @@ Character vector from header
 Reads the DICOM header and extracts the burned in tag:
 \code{(0028,0301)}.
 }
-

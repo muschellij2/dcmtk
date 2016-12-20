@@ -25,4 +25,3 @@ Adapted from
 \url{http://dicom.nema.org/dicom/2013/output/chtml/part06/chapter_6.html}
 }
 \keyword{datasets}
-

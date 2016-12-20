@@ -17,4 +17,3 @@ A \code{data.frame} of tags of datetimes, useful for DICOM
 anonymization.
 }
 \keyword{datasets}
-

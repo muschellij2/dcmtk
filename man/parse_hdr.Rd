@@ -15,4 +15,3 @@ parse_hdr(hdr)
 \description{
 Parses a DICOM header to a \code{data.frame}
 }
-

@@ -19,4 +19,3 @@ Logical
 \description{
 Installs the DICOM ToolKit
 }
-

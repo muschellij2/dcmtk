@@ -44,6 +44,8 @@ dicom_tags = rbindlist(tabs)
 dicom_tags = as.data.frame(dicom_tags)
 dicom_tags = dicom_tags %>% arrange(tag, name)
 
+dicom_tags$tag = tolower(dicom_tags$tag)
+
 stopifnot(!any(duplicated(dicom_tags$tag)))
 save(dicom_tags,
      file = "data/dicom_tags.rda",

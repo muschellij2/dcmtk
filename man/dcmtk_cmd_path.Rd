@@ -18,4 +18,3 @@ Uses \code{Sys.which} to check if command is in the PATH.
 \examples{
 dcmtk_cmd("dcmodify")
 }
-

@@ -19,4 +19,3 @@ Character vector of output filename
 \description{
 Wrapper of \code{dcm2xml} from DCMTK
 }
-

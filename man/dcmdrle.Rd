@@ -20,4 +20,3 @@ Character vector of output filename
 Wrapper of \code{dcmdrle} from DCMTK to
 decode DICOM with run-length encoding
 }
-

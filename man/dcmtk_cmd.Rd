@@ -31,4 +31,3 @@ Result from system command, depends if intern is
 \description{
 This function calls DCMTK command passed to \code{cmd}.
 }
-

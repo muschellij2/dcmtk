@@ -39,4 +39,3 @@ anon = dcm_subtract_date(tfile, base_date = base_date)
 hdr = read_dicom_header(anon)
 }
 }
-

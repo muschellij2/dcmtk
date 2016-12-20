@@ -18,4 +18,3 @@ Character vector of information
 \description{
 Wrapper of \code{dcmdump} from DCMTK
 }
-
