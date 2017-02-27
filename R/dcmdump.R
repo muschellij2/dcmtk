@@ -14,6 +14,12 @@ dcmdump = function(file,
                   file = file,
                   intern = TRUE,
                   ...)
-
+  status = attr(hdr, "status")
+  if (!is.null(status)) {
+    status = as.numeric(status)
+    if (is.na(status) || status > 0) {
+      warning("dcmdump gave back non-zero status")
+    }
+  }
   return(hdr)
 }
