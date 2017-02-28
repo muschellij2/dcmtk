@@ -4,6 +4,9 @@
 #' @return Logical \code{TRUE} if command is available.
 #' @export
 #' @examples
+#' if (!have_dcmtk_cmd("dcmodify")) {
+#' install_dcmtk()
+#' }
 #' dcmtk_cmd("dcmodify")
 dcmtk_cmd_path = function(cmd){
   check_cmd = Sys.which(cmd)

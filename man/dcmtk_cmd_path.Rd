@@ -16,5 +16,8 @@ Logical \code{TRUE} if command is available.
 Uses \code{Sys.which} to check if command is in the PATH.
 }
 \examples{
+if (!have_dcmtk_cmd("dcmodify")) {
+install_dcmtk()
+}
 dcmtk_cmd("dcmodify")
 }
