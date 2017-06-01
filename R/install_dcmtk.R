@@ -77,7 +77,7 @@ install_dcmtk = function(
     fol = unique(fol)
     stopifnot(length(fol) == 1)
     if (ext == "zip") {
-      files = utils::unzip(
+      res = utils::unzip(
         destfile,
         exdir = dcmtk_dir)
     }
