@@ -9,6 +9,16 @@
 #' }
 #' dcmtk_cmd("dcmodify")
 dcmtk_cmd_path = function(cmd){
+
+  # putting in the exe for Windows
+  sysname = tolower(Sys.info()["sysname"])
+  if (sysname %in% "windows") {
+    ext = tools::file_ext(cmd)
+    if (ext == "") {
+      cmd = paste0(cmd, ".exe")
+    }
+  }
+
   check_cmd = Sys.which(cmd)
   if (check_cmd == "") {
     dcmtk_dir = getOption("dcmtk.path")
