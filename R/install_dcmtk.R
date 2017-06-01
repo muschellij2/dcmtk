@@ -56,7 +56,11 @@ install_dcmtk = function(
     destfile = file.path(
       dcmtk_dir,
       filename)
-    utils::download.file(url, destfile)
+    dl = utils::download.file(url, destfile)
+    if (dl != 0) {
+      warning(paste0("Download indicated not successful - ",
+                     "please rerun with force = TRUE if errors"))
+    }
     ext = tools::file_ext(filename)
     if (ext == "zip") {
       files = utils::unzip(
