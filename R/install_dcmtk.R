@@ -86,9 +86,9 @@ install_dcmtk = function(
         destfile,
         compressed = "bzip2",
         exdir = dcmtk_dir)
-    }
-    if (res != 0) {
-      warning("Untarring the download did not succeed correctly!")
+      if (res != 0) {
+        warning("Untarring the download did not succeed correctly!")
+      }
     }
 
     files = file.path(dcmtk_dir, fol, fols)
