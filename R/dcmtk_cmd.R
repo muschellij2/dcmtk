@@ -33,7 +33,9 @@ dcmtk_cmd = function(
   s = sprintf('%s %s ', cmd, frontopts)
   s = gsub("\\s\\s+", " ", s)
   s = sub("[ \t\r\n]+$", "", s, perl = TRUE)
-  file = path.expand(file)
+  if (!is.null(file)) {
+    file = path.expand(file)
+  }
   s = paste(s, file)
   cmd = paste(s, opts)
 
