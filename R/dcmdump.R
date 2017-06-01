@@ -1,3 +1,4 @@
+#' @rdname dcmdump
 #' @title DICOM Dump
 #' @description Wrapper of \code{dcmdump} from DCMTK
 #'
@@ -22,4 +23,24 @@ dcmdump = function(file,
     }
   }
   return(hdr)
+}
+
+#' @export
+#' @note \code{dcmdump_full} uses the
+#' \code{frontopts = "-q --print-all --load-short --print-filename"} by
+#' default
+#' @rdname dcmdump
+dcmdump_full = function(file,
+                        ...) {
+  args = list(...)
+  frontopts = args$frontopts
+  if (is.null(frontopts)) {
+    frontopts = ""
+  } else {
+    frontopts = paste(frontopts, collapse = " ")
+  }
+  frontopts = paste("-q --print-all --load-short --print-filename",
+               frontopts)
+  args$frontopts = frontopts
+  do.call("dcmdump", args)
 }
