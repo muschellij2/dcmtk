@@ -63,7 +63,7 @@ install_dcmtk = function(
         destfile,
         exdir = dcmtk_dir,
         list = TRUE)
-
+      files = files$Name
     }
     if (ext == "bz2") {
       files = utils::untar(
