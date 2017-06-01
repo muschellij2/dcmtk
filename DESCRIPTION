@@ -18,4 +18,5 @@ RoxygenNote: 6.0.1
 URL: https://github.com/muschellij2/dcmtk,
     http://dicom.offis.de/dcmtk.php.en
 BugReports: https://github.com/muschellij2/dcmtk/issues
-Suggests: testthat
+Suggests: testthat,
+    covr
