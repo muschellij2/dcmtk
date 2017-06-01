@@ -11,7 +11,6 @@ d_anon\.txt
 large_dicom_dump\.html
 ex_dicom_data
 ex_dicom_data/*
-example\.dcm
 ^\.travis\.yml$
 README\.md
 ^appveyor\.yml$
