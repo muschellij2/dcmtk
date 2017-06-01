@@ -61,7 +61,9 @@ install_dcmtk = function(
     if (ext == "zip") {
       files = utils::unzip(
         destfile,
-        exdir = dcmtk_dir)
+        exdir = dcmtk_dir,
+        list = TRUE)
+
     }
     if (ext == "bz2") {
       files = utils::untar(
@@ -69,25 +71,31 @@ install_dcmtk = function(
         compressed = "bzip2",
         list = TRUE,
         exdir = dcmtk_dir)
-      fnames = strsplit(files, .Platform$file.sep)
-      fol = sapply(fnames, `[`, 1)
-      fol = unique(fol)
-      stopifnot(length(fol) == 1)
-
+    }
+    fnames = strsplit(files, .Platform$file.sep)
+    fol = sapply(fnames, `[`, 1)
+    fol = unique(fol)
+    stopifnot(length(fol) == 1)
+    if (ext == "zip") {
+      files = utils::unzip(
+        destfile,
+        exdir = dcmtk_dir)
+    }
+    if (ext == "bz2") {
       res = utils::untar(
         destfile,
         compressed = "bzip2",
         exdir = dcmtk_dir)
-      if (res != 0) {
-        warning("Untarring the download did not succeed correctly!")
-      }
-
-      files = file.path(dcmtk_dir, fol, fols)
-      out_files = file.path(dcmtk_dir, fols)
-
-      file.rename(files, out_files)
-      file.remove(destfile)
     }
+    if (res != 0) {
+      warning("Untarring the download did not succeed correctly!")
+    }
+
+    files = file.path(dcmtk_dir, fol, fols)
+    out_files = file.path(dcmtk_dir, fols)
+
+    file.rename(files, out_files)
+    file.remove(destfile)
   }
   return(all(file.exists(out_fols)))
 }
