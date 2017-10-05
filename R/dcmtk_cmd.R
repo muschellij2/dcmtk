@@ -36,6 +36,7 @@ dcmtk_cmd = function(
   if (!is.null(file)) {
     file = path.expand(file)
   }
+  file = shQuote(file)
   s = paste(s, file)
   cmd = paste(s, opts)
 

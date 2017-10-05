@@ -14,3 +14,9 @@ ex_dicom_data/*
 ^\.travis\.yml$
 README\.md
 ^appveyor\.yml$
+inst/bin
+inst/etc
+inst/share
+inst/dcmtk*
+^.*\\.Rproj$
+^\\.Rproj\\.user$

@@ -36,11 +36,12 @@ install_dcmtk = function(
   base_url = paste0("ftp://dicom.offis.de/pub/dicom/offis/software",
                     "/dcmtk/dcmtk360/bin/")
 
-  filename = switch(type,
-                    osx = "dcmtk-3.6.0-mac-i686-static.tar.bz2",
-                    linux_dynamic = "dcmtk-3.6.0-linux-i686-dynamic.tar.bz2",
-                    linux_static = "dcmtk-3.6.0-linux-i686-static.tar.bz2",
-                    windows = "dcmtk-3.6.0-win32-i386.zip"
+  filename = switch(
+    type,
+    osx = "dcmtk-3.6.0-mac-i686-static.tar.bz2",
+    linux_dynamic = "dcmtk-3.6.0-linux-i686-dynamic.tar.bz2",
+    linux_static = "dcmtk-3.6.0-linux-i686-static.tar.bz2",
+    windows = "dcmtk-3.6.0-win32-i386.zip"
   )
   url = paste0(base_url, filename)
 

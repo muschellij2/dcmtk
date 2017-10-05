@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+inst/bin
+inst/etc
+inst/share
+inst/dcmtk*

@@ -1,0 +1,5 @@
+#! /bin/sh
+rm -rf inst/bin
+rm -rf inst/etc
+rm -rf inst/share
+rm -rf inst/dcmtk*
