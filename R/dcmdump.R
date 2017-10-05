@@ -11,10 +11,11 @@
 dcmdump = function(file,
                    ...) {
 
-  hdr = dcmtk_cmd(cmd = "dcmdump",
-                  file = file,
-                  intern = TRUE,
-                  ...)
+  hdr = dcmtk_cmd(
+    cmd = "dcmdump",
+    file = file,
+    intern = TRUE,
+    ...)
   status = attr(hdr, "status")
   if (!is.null(status)) {
     status = as.numeric(status)
@@ -40,7 +41,7 @@ dcmdump_full = function(file,
     frontopts = paste(frontopts, collapse = " ")
   }
   frontopts = paste("-q --print-all --load-short --print-filename",
-               frontopts)
+                    frontopts)
   args$frontopts = frontopts
   do.call("dcmdump", args)
 }
