@@ -33,6 +33,7 @@ read_dicom_header = function(
                add_opts)
   hdr = dcmdump(file = file,
                 frontopts = opts)
+  hdr = enc2utf8(hdr)
   hdr = parse_hdr(hdr)
   if (replace_names) {
     hdr$ind = seq(nrow(hdr))

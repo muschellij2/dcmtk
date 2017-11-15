@@ -23,6 +23,7 @@ dcmdump = function(file,
       warning("dcmdump gave back non-zero status")
     }
   }
+  hdr = enc2utf8(hdr)
   return(hdr)
 }
 
@@ -43,5 +44,7 @@ dcmdump_full = function(file,
   frontopts = paste("-q --print-all --load-short --print-filename",
                     frontopts)
   args$frontopts = frontopts
-  do.call("dcmdump", args)
+  x = do.call("dcmdump", args)
+  x = enc2utf8(x)
+  return(x)
 }
