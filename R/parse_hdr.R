@@ -40,6 +40,9 @@ parse_hdr = function(hdr){
   ############################
   tags = !grepl("^#", df$hdr) & df$hdr != ""
   df = df[tags,]
+  if (nrow(df) == 0) {
+    return(NULL)
+  }
   # # tags = grepl("^\\(", hdr)
   # hdr = hdr[ tags ]
   # fname = fname[ tags ]
@@ -96,7 +99,9 @@ parse_hdr = function(hdr){
     stop("Header not likely parsed correctly")
   }
   info = do.call("rbind", info)
-  colnames(info) = c("tag", "val_rep", "value")
+  if (NROW(info) > 0) {
+    colnames(info) = c("tag", "val_rep", "value")
+  }
 
 
   ######################################
