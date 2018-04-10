@@ -9,12 +9,16 @@
 #'
 #' @importFrom tidyr spread
 #' @importFrom dplyr mutate filter select distinct group_by
-#' @importFrom dplyr ungroup slice
+#' @importFrom dplyr ungroup slice %>% n
+
 wide_hdr = function(
   hdr,
   keep_tags = NULL
 ) {
 
+
+  tag = name = value = NULL
+  rm(list = c("tag", "name", "value"))
 
   # (0040,a040)
   if (!is.null(keep_tags)) {
