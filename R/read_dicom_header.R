@@ -25,7 +25,7 @@ read_dicom_header = function(
     add_opts = c(add_opts,
                  "--recurse",
                  paste0("--scan-directories ",
-                        normalizePath(path)),
+                        shQuote(normalizePath(path))),
                  "--scan-pattern")
   }
   add_opts = paste(add_opts, collapse = " ")
