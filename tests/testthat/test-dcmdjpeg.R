@@ -11,7 +11,7 @@ ofiles = list.files(pattern = ".dcm$",
 test_that("dcmdjpeg with files", {
 
   expect_message({res = dcmdjpeg(file = ofiles)})
-  expect_silent({res = dcmdjpeg(file = ofiles, verbose = TRUE)})
+  expect_silent({res = dcmdjpeg(file = ofiles, verbose = FALSE)})
   expect_true(length(res) == length(ofiles))
 
 })
