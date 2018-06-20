@@ -38,6 +38,7 @@ dcmtk_cmd = function(
   }
   # file = shQuote(file)
   s = paste(s, file)
+  opts = paste(opts, collapse = " ")
   cmd = paste(s, opts)
 
   if (verbose) {
