@@ -5,8 +5,8 @@
 \title{DICOM Anonymization}
 \usage{
 dcm_anon(file, rem_tags = dcmtk::removal_tags$tag, mod_tags = NULL,
-  insert_tags = NULL, new_uids = TRUE, new_date = NULL, new_time = NULL,
-  verbose_flag = FALSE, ...)
+  insert_tags = NULL, new_uids = TRUE, new_date = NULL,
+  new_time = NULL, verbose_flag = FALSE, ...)
 }
 \arguments{
 \item{file}{DICOM Image}

@@ -4,8 +4,8 @@
 \alias{dcmtk_cmd}
 \title{DCMTK Command Wrapper}
 \usage{
-dcmtk_cmd(cmd, file = NULL, opts = "", frontopts = "", verbose = TRUE,
-  intern = FALSE, run = TRUE, ...)
+dcmtk_cmd(cmd, file = NULL, opts = "", frontopts = "",
+  verbose = TRUE, intern = FALSE, run = TRUE, ...)
 }
 \arguments{
 \item{cmd}{(character) DCMTK command}

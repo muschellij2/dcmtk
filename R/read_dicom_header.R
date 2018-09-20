@@ -11,6 +11,7 @@
 #' @param recursive logical indicating if the \code{--recurse} flag be passed to
 #' \code{\link{dcmdump}}
 #' @param path if \code{recursive = TRUE}, then this will the path scanned.
+#' @param ... not used
 #'
 #' @return Character vector of header information
 #' @export
@@ -19,7 +20,8 @@ read_dicom_header = function(
   replace_names = FALSE,
   add_opts = "",
   recursive = FALSE,
-  path = "."
+  path = ".",
+  ...
 ) {
   if (recursive) {
     add_opts = c(add_opts,
@@ -51,6 +53,41 @@ read_dicom_header = function(
 
 #' @rdname read_dicom_header
 #' @export
-dcmhd = function(file) {
-  read_dicom_header(file = file)
+read_single_dicom_header = function(
+  file = "",
+  replace_names = FALSE,
+  add_opts = ""
+) {
+  add_opts = paste(add_opts, collapse = " ")
+  opts = paste("-q --print-all --load-short --print-filename",
+               add_opts)
+  if (length(file) == 1) {
+    if (file.exists(file)) {
+      tfile = tempfile(fileext = ".dcm")
+      file.copy(file, tfile)
+      file = tfile
+    }
+  }
+  hdr = dcmdump(file = file,
+                frontopts = opts)
+  hdr = enc2utf8(hdr)
+  hdr = parse_hdr(hdr)
+  if (replace_names) {
+    hdr$ind = seq(nrow(hdr))
+    tag =  dcmtk::dicom_tags[, c("tag", "keyword")]
+    colnames(tag)[2] = "dname"
+    hdr = merge(hdr, tag, all.x = TRUE, sort = FALSE)
+    ind = hdr$name == "UnknownTagAndData" & !is.na(hdr$dname)
+    hdr$name[ ind ] = hdr$dname[ind]
+    hdr$dname = NULL
+    hdr = hdr[ order(hdr$ind),]
+    hdr$ind = NULL
+  }
+  return(hdr)
+}
+
+#' @rdname read_dicom_header
+#' @export
+dcmhd = function(...) {
+  read_dicom_header(...)
 }

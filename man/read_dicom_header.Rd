@@ -2,13 +2,17 @@
 % Please edit documentation in R/read_dicom_header.R
 \name{read_dicom_header}
 \alias{read_dicom_header}
+\alias{read_single_dicom_header}
 \alias{dcmhd}
 \title{Read DICOM File}
 \usage{
-read_dicom_header(file = "*.dcm", replace_names = FALSE, add_opts = "",
-  recursive = FALSE, path = ".")
+read_dicom_header(file = "*.dcm", replace_names = FALSE,
+  add_opts = "", recursive = FALSE, path = ".", ...)
 
-dcmhd(file)
+read_single_dicom_header(file = "", replace_names = FALSE,
+  add_opts = "")
+
+dcmhd(...)
 }
 \arguments{
 \item{file}{DICOM input file or directory.  If \code{recursivee = TRUE},
@@ -25,6 +29,8 @@ The flags already added are
 \code{\link{dcmdump}}}
 
 \item{path}{if \code{recursive = TRUE}, then this will the path scanned.}
+
+\item{...}{not used}
 }
 \value{
 Character vector of header information

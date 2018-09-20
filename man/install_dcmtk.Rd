@@ -4,8 +4,8 @@
 \alias{install_dcmtk}
 \title{Install DCMTK}
 \usage{
-install_dcmtk(type = c("osx", "linux_static", "linux_dynamic", "windows"),
-  force = FALSE)
+install_dcmtk(type = c("osx", "linux_static", "linux_dynamic",
+  "windows"), force = FALSE)
 }
 \arguments{
 \item{type}{Which format of dcmtk should be downloaded.  If not specified,
