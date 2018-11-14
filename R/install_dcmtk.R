@@ -17,13 +17,24 @@
 #' install_dir =  tempfile()
 #' dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
 #' install_dcmtk(install_dir = install_dir)
+#'
+#'
+#' type =   type = c("osx", "linux_static", "linux_dynamic", "windows")
+#' arch = c("x86_64", "i686")
+#' version = c("3.6.3", "3.6.0")
+#' eg = expand.grid(type = type, arch = arch, version = version,
+#' stringsAsFactors = FALSE)
+#' lists = apply(eg, 1, as.list)
+#' eg$filename = sapply(lists, function(x) {
+#' do.call(dcmtk_filename, args = x)
+#' })
 install_dcmtk = function(
   type = c("osx",
            "linux_static",
            "linux_dynamic",
            "windows"),
   force = FALSE,
-  version = c("3.6.3", "3.6.2", "3.6.0"),
+  version = c("3.6.3", "3.6.0"),
   arch = c("x86_64", "i686"),
   install_dir = system.file(package = "dcmtk")
 ) {
@@ -44,22 +55,12 @@ install_dcmtk = function(
       "linux_static",
       "linux_dynamic",
       "windows"))
-  fol = gsub("[.]", "", version)
-  if (nchar(fol != 3)) {
-    warning("If giving version, should be 3 numbers: major.minor.fix")
-  }
-  base_url = paste0("ftp://dicom.offis.de/pub/dicom/offis/software",
-                    "/dcmtk/", "dcmtk", fol, "/bin/")
+  version = match.arg(version)
 
-  start = paste0("dcmtk-", version, "-")
-  filename = switch(
-    type,
-    osx = paste0("mac-", arch, "-static.tar.bz2"),
-    linux_dynamic = paste0("linux-", arch, "-dynamic.tar.bz2"),
-    linux_static = paste0("linux-", arch, "-static.tar.bz2"),
-    windows = paste0("win32-", arch, ".zip")
-  )
-  filename = paste0(start, filename)
+  base_url = dcmtk_ftp_url(version)
+  arch = match.arg(arch)
+
+  filename = dcmtk_filename(type, arch, version)
   url = paste0(base_url, filename)
 
 
@@ -120,4 +121,77 @@ install_dcmtk = function(
     file.remove(destfile)
   }
   return(all(file.exists(out_fols)))
+}
+
+
+#' @export
+#' @rdname install_dcmtk
+dcmtk_filename = function(type, arch, version) {
+  ending = ""
+  if (version == "3.6.0") {
+    # windows was 386
+    if (type == "windows") {
+      arch = "i386"
+      arch = paste0("win32-", arch)
+    } else {
+      # only 686 versions out
+      arch = "i686"
+      ending = ""
+      # had endings
+      if (grepl("static", type) ||
+          grepl("osx", type)) {
+        ending = "-static"
+      }
+      if (grepl("dynamic", type)) {
+        ending = "-dynamic"
+      }
+    }
+    if (type == "osx") {
+      arch = paste0("mac-", arch)
+    }
+  } else {
+    if (type == "windows") {
+      if (arch == "i686") {
+        arch = paste0("win32-", "dynamic")
+      } else {
+        arch = paste0("win64-", "dynamic")
+      }
+    } else {
+      arch = "x86_64"
+      if (grepl("dynamic", type) ||
+          grepl("osx", type)) {
+        ending = ""
+      } else if (grepl("static", type)) {
+        ending = "-static"
+      }
+    }
+    if (type == "osx") {
+      arch = paste0("macosx-", arch)
+    }
+  }
+  start = paste0("dcmtk-", version, "-")
+  filename = switch(
+    type,
+    osx = paste0(arch, ending, ".tar.bz2"),
+    linux_dynamic = paste0("linux-", arch, ending, ".tar.bz2"),
+    linux_static = paste0("linux-", arch, ending, ".tar.bz2"),
+    windows = paste0(arch, ".zip")
+  )
+  filename = paste0(start, filename)
+  return(filename)
+}
+
+
+
+#' @export
+#' @rdname install_dcmtk
+dcmtk_ftp_url = function(version) {
+
+  fol = gsub("[.]", "", version)
+  if (nchar(fol) != 3) {
+    warning("If giving version, should be 3 numbers: major.minor.fix")
+  }
+  base_url = paste0("ftp://dicom.offis.de/pub/dicom/offis/software",
+                    "/dcmtk/", "dcmtk", fol, "/bin/")
+  return(base_url)
 }

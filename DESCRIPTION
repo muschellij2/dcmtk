@@ -22,4 +22,5 @@ URL: https://github.com/muschellij2/dcmtk,
     http://dicom.offis.de/dcmtk.php.en
 BugReports: https://github.com/muschellij2/dcmtk/issues
 Suggests: testthat,
+    httr,
     covr

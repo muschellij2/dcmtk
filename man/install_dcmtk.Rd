@@ -2,12 +2,18 @@
 % Please edit documentation in R/install_dcmtk.R
 \name{install_dcmtk}
 \alias{install_dcmtk}
+\alias{dcmtk_filename}
+\alias{dcmtk_ftp_url}
 \title{Install DCMTK}
 \usage{
 install_dcmtk(type = c("osx", "linux_static", "linux_dynamic",
-  "windows"), force = FALSE, version = c("3.6.3", "3.6.2", "3.6.0"),
+  "windows"), force = FALSE, version = c("3.6.3", "3.6.0"),
   arch = c("x86_64", "i686"), install_dir = system.file(package =
   "dcmtk"))
+
+dcmtk_filename(type, arch, version)
+
+dcmtk_ftp_url(version)
 }
 \arguments{
 \item{type}{Which format of dcmtk should be downloaded.  If not specified,
@@ -31,4 +37,15 @@ Installs the DICOM ToolKit
 install_dir =  tempfile()
 dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
 install_dcmtk(install_dir = install_dir)
+
+
+type =   type = c("osx", "linux_static", "linux_dynamic", "windows")
+arch = c("x86_64", "i686")
+version = c("3.6.3", "3.6.0")
+eg = expand.grid(type = type, arch = arch, version = version,
+stringsAsFactors = FALSE)
+lists = apply(eg, 1, as.list)
+eg$filename = sapply(lists, function(x) {
+do.call(dcmtk_filename, args = x)
+})
 }
