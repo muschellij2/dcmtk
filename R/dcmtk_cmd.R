@@ -32,7 +32,12 @@ dcmtk_cmd = function(
   ##########################
   s = sprintf('%s %s ', cmd, frontopts)
   s = gsub("\\s\\s+", " ", s)
-  s = sub("[ \t\r\n]+$", "", s, perl = TRUE)
+  # if statement for non-unicode things
+  if (grepl("\t", s) |
+      grepl("\r", s) |
+      grepl("\n", s)) {
+    s = sub("[ \t\r\n]+$", "", s, perl = TRUE)
+  }
   if (!is.null(file)) {
     file = path.expand(file)
   }
@@ -45,8 +50,8 @@ dcmtk_cmd = function(
     message(cmd, "\n")
   }
   if (run) {
-  res = system(cmd, intern = intern, ...)
-  return(res)
+    res = system(cmd, intern = intern, ...)
+    return(res)
   } else {
     return(invisible(NULL))
   }

@@ -4,18 +4,25 @@
 #' @param type Which format of dcmtk should be downloaded.  If not specified,
 #' it will be chosen from the platform
 #' @param force Should installing be forced even if folders exist?
+#' @param install_dir Installation Directory
 #'
 #' @return Logical
 #' @export
 #'
 #' @importFrom utils download.file unzip untar
 #' @importFrom tools file_ext
+#' @examples
+#' install_dir =  tempfile()
+#' dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
+#' install_dcmtk(install_dir = install_dir)
 install_dcmtk = function(
   type = c("osx",
            "linux_static",
            "linux_dynamic",
            "windows"),
-  force = FALSE) {
+  force = FALSE,
+  install_dir = system.file(package = "dcmtk")
+) {
   # type = "osx"
 
   if (missing(type)) {
@@ -46,16 +53,16 @@ install_dcmtk = function(
   url = paste0(base_url, filename)
 
 
-  dcmtk_dir = system.file(package = "dcmtk")
+  install_dir = system.file(package = "dcmtk")
   fols = c("bin", "share",
            # "lib", "include",
            "etc")
-  out_fols = file.path(dcmtk_dir, fols)
+  out_fols = file.path(install_dir, fols)
 
   if (!all(file.exists(out_fols)) || force) {
 
     destfile = file.path(
-      dcmtk_dir,
+      install_dir,
       filename)
     dl = utils::download.file(url, destfile)
     if (dl != 0) {
@@ -66,7 +73,7 @@ install_dcmtk = function(
     if (ext == "zip") {
       files = utils::unzip(
         destfile,
-        exdir = dcmtk_dir,
+        exdir = install_dir,
         list = TRUE)
       files = files$Name
     }
@@ -75,7 +82,7 @@ install_dcmtk = function(
         destfile,
         compressed = "bzip2",
         list = TRUE,
-        exdir = dcmtk_dir)
+        exdir = install_dir)
     }
     fnames = strsplit(files, .Platform$file.sep)
     fol = sapply(fnames, `[`, 1)
@@ -84,20 +91,20 @@ install_dcmtk = function(
     if (ext == "zip") {
       res = utils::unzip(
         destfile,
-        exdir = dcmtk_dir)
+        exdir = install_dir)
     }
     if (ext == "bz2") {
       res = utils::untar(
         destfile,
         compressed = "bzip2",
-        exdir = dcmtk_dir)
+        exdir = install_dir)
       if (res != 0) {
         warning("Untarring the download did not succeed correctly!")
       }
     }
 
-    files = file.path(dcmtk_dir, fol, fols)
-    out_files = file.path(dcmtk_dir, fols)
+    files = file.path(install_dir, fol, fols)
+    out_files = file.path(install_dir, fols)
 
     file.rename(files, out_files)
     file.remove(destfile)

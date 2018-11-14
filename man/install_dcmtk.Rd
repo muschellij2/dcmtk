@@ -5,17 +5,25 @@
 \title{Install DCMTK}
 \usage{
 install_dcmtk(type = c("osx", "linux_static", "linux_dynamic",
-  "windows"), force = FALSE)
+  "windows"), force = FALSE, install_dir = system.file(package =
+  "dcmtk"))
 }
 \arguments{
 \item{type}{Which format of dcmtk should be downloaded.  If not specified,
 it will be chosen from the platform}
 
 \item{force}{Should installing be forced even if folders exist?}
+
+\item{install_dir}{Installation Directory}
 }
 \value{
 Logical
 }
 \description{
 Installs the DICOM ToolKit
+}
+\examples{
+install_dir =  tempfile()
+dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
+install_dcmtk(install_dir = install_dir)
 }

@@ -29,6 +29,13 @@ read_dicom_header = function(
                  paste0("--scan-directories ",
                         shQuote(normalizePath(path))),
                  "--scan-pattern")
+  } else {
+    if (!missing(path)) {
+      warning(paste0(
+        "path is specified, but recursive = FALSE. ",
+        "The path variable not used")
+      )
+    }
   }
   add_opts = paste(add_opts, collapse = " ")
   opts = paste("-q --print-all --load-short --print-filename",
