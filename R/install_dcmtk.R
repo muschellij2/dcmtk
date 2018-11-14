@@ -5,6 +5,8 @@
 #' it will be chosen from the platform
 #' @param force Should installing be forced even if folders exist?
 #' @param install_dir Installation Directory
+#' @param version version of DCMTK to install
+#' @param arch architecture to install, either 64 or 32
 #'
 #' @return Logical
 #' @export
@@ -21,6 +23,8 @@ install_dcmtk = function(
            "linux_dynamic",
            "windows"),
   force = FALSE,
+  version = c("3.6.3", "3.6.2", "3.6.0"),
+  arch = c("x86_64", "i686"),
   install_dir = system.file(package = "dcmtk")
 ) {
   # type = "osx"
@@ -40,16 +44,22 @@ install_dcmtk = function(
       "linux_static",
       "linux_dynamic",
       "windows"))
+  fol = gsub("[.]", "", version)
+  if (nchar(fol != 3)) {
+    warning("If giving version, should be 3 numbers: major.minor.fix")
+  }
   base_url = paste0("ftp://dicom.offis.de/pub/dicom/offis/software",
-                    "/dcmtk/dcmtk360/bin/")
+                    "/dcmtk/", "dcmtk", fol, "/bin/")
 
+  start = paste0("dcmtk-", version, "-")
   filename = switch(
     type,
-    osx = "dcmtk-3.6.0-mac-i686-static.tar.bz2",
-    linux_dynamic = "dcmtk-3.6.0-linux-i686-dynamic.tar.bz2",
-    linux_static = "dcmtk-3.6.0-linux-i686-static.tar.bz2",
-    windows = "dcmtk-3.6.0-win32-i386.zip"
+    osx = paste0("mac-", arch, "-static.tar.bz2"),
+    linux_dynamic = paste0("linux-", arch, "-dynamic.tar.bz2"),
+    linux_static = paste0("linux-", arch, "-static.tar.bz2"),
+    windows = paste0("win32-", arch, ".zip")
   )
+  filename = paste0(start, filename)
   url = paste0(base_url, filename)
 
 

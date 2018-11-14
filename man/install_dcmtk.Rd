@@ -5,7 +5,8 @@
 \title{Install DCMTK}
 \usage{
 install_dcmtk(type = c("osx", "linux_static", "linux_dynamic",
-  "windows"), force = FALSE, install_dir = system.file(package =
+  "windows"), force = FALSE, version = c("3.6.3", "3.6.2", "3.6.0"),
+  arch = c("x86_64", "i686"), install_dir = system.file(package =
   "dcmtk"))
 }
 \arguments{
@@ -13,6 +14,10 @@ install_dcmtk(type = c("osx", "linux_static", "linux_dynamic",
 it will be chosen from the platform}
 
 \item{force}{Should installing be forced even if folders exist?}
+
+\item{version}{version of DCMTK to install}
+
+\item{arch}{architecture to install, either 64 or 32}
 
 \item{install_dir}{Installation Directory}
 }
