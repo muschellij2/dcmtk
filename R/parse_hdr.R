@@ -70,6 +70,10 @@ parse_hdr = function(hdr){
   rm(list = "ss")
 
 
+  df$hdr = sub("length #=", "length=", df$hdr)
+  count_pound = stringr::str_count(df$hdr, pattern = "#")
+  subber = count_pound > 1
+  df$hdr[ subber ] = sub("#", "", df$hdr[ subber ])
   ss = strsplit(df$hdr, "# ")
   ss = lapply(ss, trimws)
 
@@ -110,7 +114,8 @@ parse_hdr = function(hdr){
   lengths = sapply(ss, length)
   check = all(lengths == 2)
   if (!check) {
-    warning("Header not likely parsed correctly")
+    warning(paste0("Splitting each value wrong, ", "
+            hdr not likely parsed correctly"))
   } else {
     ss = lapply(ss, second)
     ss = lapply(ss, function(x) {

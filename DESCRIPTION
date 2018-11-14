@@ -1,7 +1,7 @@
 Package: dcmtk
 Type: Package
 Title: Wrapper for 'DICOM' Toolkit ('DCMTK')
-Version: 0.6.3
+Version: 0.6.3.1
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Set of functions porting the 
@@ -12,6 +12,7 @@ Imports:
     utils,
     tools,
     lubridate,
+    stringr,
     tidyr,
     dplyr
 Encoding: UTF-8
