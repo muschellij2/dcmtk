@@ -1,13 +1,7 @@
 context("Running non-modifying dcmtk commands")
 
-in_ci <- function() {
-  nzchar(Sys.getenv("CI"))
-}
-
 if (!install_dcmtk()) {
-  if (in_ci()) {
-    source_install_dcmtk()
-  }
+
   install_dcmtk()
 }
 dcm_dir = system.file("extdata", package = "dcmtk")
