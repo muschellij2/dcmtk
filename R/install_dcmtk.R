@@ -21,7 +21,7 @@
 #'
 #' type =   type = c("osx", "linux_static", "linux_dynamic", "windows")
 #' arch = c("x86_64", "i686")
-#' version = c("3.6.3", "3.6.0")
+#' version = c( "3.6.3", "3.6.0")
 #' eg = expand.grid(type = type, arch = arch, version = version,
 #' stringsAsFactors = FALSE)
 #' lists = apply(eg, 1, as.list)
@@ -64,7 +64,6 @@ install_dcmtk = function(
   url = paste0(base_url, filename)
 
 
-  install_dir = system.file(package = "dcmtk")
   fols = c("bin", "share",
            # "lib", "include",
            "etc")
@@ -199,4 +198,86 @@ dcmtk_ftp_url = function(version) {
   base_url = paste0("ftp://dicom.offis.de/pub/dicom/offis/software",
                     "/dcmtk/", "dcmtk", fol, "/bin/")
   return(base_url)
+}
+
+#' @export
+#' @param cmake_opts options for CMAKE \code{cmake} command.
+#' Can be a character vector or character scalar.
+#' For example, if want to use \code{ICU} versus \code{libiconv},
+#' use \code{cmake_opts = "-DDCMTK_ENABLE_CHARSET_CONVERSION=ICU"}
+#' @rdname install_dcmtk
+#' @importFrom git2r clone checkout
+source_install_dcmtk = function(
+  type = c("osx",
+           "linux",
+           "windows"),
+  version = c( "3.6.3", "3.6.0"),
+  install_dir = system.file(package = "dcmtk"),
+  cmake_opts = NULL
+) {
+  sysname = tolower(Sys.info()["sysname"])
+  if (missing(type)) {
+    type = switch(sysname,
+                  "linux" = "linux",
+                  "darwin" = "osx",
+                  "windows" = "windows"
+    )
+  }
+  type[grepl("linux", type) & type != "linux"] = "linux"
+  type[type == "darwin"] = "osx"
+  type = match.arg(
+    type,
+    choices = c(
+      "osx",
+      "linux",
+      "windows"))
+  version = match.arg(version)
+
+#   install_dir = tempfile()
+#   cmake_opts = "-DDCMTK_ENABLE_CHARSET_CONVERSION=ICU"
+  dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
+  tdir = tempfile()
+  dir.create(tdir)
+  repo = git2r::clone("https://github.com/DCMTK/dcmtk", local_path = tdir)
+
+  gh_version = c(
+    "3.6.4" = "1967b13134308f311e6a827e616958c6a4da5bc9",
+    "3.6.3" = "1f20e10ca48ebcbf4cb3e9fd1aae4ce6eaee0609",
+    "3.6.0" = "79892c9c325be0fe1060858b0c5622989ce0aa26")
+  commit_id = match(version[1], names(gh_version))
+  if (!is.na(commit_id)) {
+    commit_id = gh_version[commit_id]
+    git2r::checkout(repo, branch = commit_id)
+  }
+  build_dir = tempfile()
+  dir.create(build_dir)
+  owd = getwd()
+  on.exit({
+    setwd(owd)
+  })
+  setwd(build_dir)
+  cmake_opts = c(paste0("-DCMAKE_INSTALL_PREFIX=", install_dir),
+                 cmake_opts)
+  cmake_opts = paste(cmake_opts, collapse = " ")
+  cmd = paste("cmake", cmake_opts, tdir)
+  system(cmd)
+  if (res != 0) {
+    warning("CMake install non-zero exit status")
+  }
+  make_cmd = "make"
+  system(make_cmd)
+  if (res != 0) {
+    warning("Make returned non-zero status")
+  }
+
+  make_install_cmd = "make install"
+  res = system(make_install_cmd)
+  if (res != 0) {
+    warning("Make install non-zero exit status")
+  }
+  fols = c("bin", "share",
+           "etc")
+  out_fols = file.path(install_dir, fols)
+  return(all(file.exists(out_fols)))
+
 }

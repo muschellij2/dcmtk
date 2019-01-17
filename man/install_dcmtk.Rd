@@ -4,6 +4,7 @@
 \alias{install_dcmtk}
 \alias{dcmtk_filename}
 \alias{dcmtk_ftp_url}
+\alias{source_install_dcmtk}
 \title{Install DCMTK}
 \usage{
 install_dcmtk(type = c("osx", "linux_static", "linux_dynamic",
@@ -14,6 +15,10 @@ install_dcmtk(type = c("osx", "linux_static", "linux_dynamic",
 dcmtk_filename(type, arch, version)
 
 dcmtk_ftp_url(version)
+
+source_install_dcmtk(type = c("osx", "linux", "windows"),
+  version = c("3.6.3", "3.6.0"), install_dir = system.file(package =
+  "dcmtk"), cmake_opts = NULL)
 }
 \arguments{
 \item{type}{Which format of dcmtk should be downloaded.  If not specified,
@@ -26,6 +31,11 @@ it will be chosen from the platform}
 \item{arch}{architecture to install, either 64 or 32}
 
 \item{install_dir}{Installation Directory}
+
+\item{cmake_opts}{options for CMAKE \code{cmake} command.
+Can be a character vector or character scalar.
+For example, if want to use \code{ICU} versus \code{libiconv},
+use \code{cmake_opts = "-DDCMTK_ENABLE_CHARSET_CONVERSION=ICU"}}
 }
 \value{
 Logical if installed
@@ -41,7 +51,7 @@ install_dcmtk(install_dir = install_dir)
 
 type =   type = c("osx", "linux_static", "linux_dynamic", "windows")
 arch = c("x86_64", "i686")
-version = c("3.6.3", "3.6.0")
+version = c( "3.6.3", "3.6.0")
 eg = expand.grid(type = type, arch = arch, version = version,
 stringsAsFactors = FALSE)
 lists = apply(eg, 1, as.list)
