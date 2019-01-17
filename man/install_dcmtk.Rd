@@ -28,7 +28,7 @@ it will be chosen from the platform}
 \item{install_dir}{Installation Directory}
 }
 \value{
-Logical
+Logical if installed
 }
 \description{
 Installs the DICOM ToolKit

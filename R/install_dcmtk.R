@@ -8,7 +8,7 @@
 #' @param version version of DCMTK to install
 #' @param arch architecture to install, either 64 or 32
 #'
-#' @return Logical
+#' @return Logical if installed
 #' @export
 #'
 #' @importFrom utils download.file unzip untar
@@ -40,8 +40,8 @@ install_dcmtk = function(
 ) {
   # type = "osx"
 
+  sysname = tolower(Sys.info()["sysname"])
   if (missing(type)) {
-    sysname = tolower(Sys.info()["sysname"])
     type = switch(sysname,
                   "linux" = "linux_static",
                   "darwin" = "osx",
@@ -119,6 +119,11 @@ install_dcmtk = function(
 
     file.rename(files, out_files)
     file.remove(destfile)
+    if (sysname %in% c("linux", "darwin")) {
+      for (ifile in out_files) {
+        system(sprintf("chmod +x %s", ifile))
+      }
+    }
   }
   return(all(file.exists(out_fols)))
 }
