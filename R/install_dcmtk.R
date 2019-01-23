@@ -260,12 +260,12 @@ source_install_dcmtk = function(
                  cmake_opts)
   cmake_opts = paste(cmake_opts, collapse = " ")
   cmd = paste("cmake", cmake_opts, tdir)
-  system(cmd)
+  res = system(cmd)
   if (res != 0) {
     warning("CMake install non-zero exit status")
   }
   make_cmd = "make"
-  system(make_cmd)
+  res = system(make_cmd)
   if (res != 0) {
     warning("Make returned non-zero status")
   }
