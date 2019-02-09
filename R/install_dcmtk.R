@@ -1,4 +1,4 @@
-#' Install DCMTK
+#' @title Install DCMTK
 #' @description Installs the DICOM ToolKit
 #'
 #' @param type Which format of dcmtk should be downloaded.  If not specified,
@@ -13,11 +13,18 @@
 #'
 #' @importFrom utils download.file unzip untar
 #' @importFrom tools file_ext
+#' @rdname aaa_install_dcmtk
 #' @examples
+#' in_ci <- function() {
+#'   nzchar(Sys.getenv("CI"))
+#' }
+#'
 #' install_dir =  tempfile()
 #' dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
-#' install_dcmtk(install_dir = install_dir)
-#'
+#' res = install_dcmtk(install_dir = install_dir)
+#' if (in_ci() & !res) {
+#'   source_install_dcmtk()
+#' }
 #'
 #' type =   type = c("osx", "linux_static", "linux_dynamic", "windows")
 #' arch = c("x86_64", "i686")
@@ -129,7 +136,7 @@ install_dcmtk = function(
 
 
 #' @export
-#' @rdname install_dcmtk
+#' @rdname aaa_install_dcmtk
 dcmtk_filename = function(type, arch, version) {
   ending = ""
   if (version == "3.6.0") {
@@ -188,7 +195,7 @@ dcmtk_filename = function(type, arch, version) {
 
 
 #' @export
-#' @rdname install_dcmtk
+#' @rdname aaa_install_dcmtk
 dcmtk_ftp_url = function(version) {
 
   fol = gsub("[.]", "", version)
@@ -205,7 +212,7 @@ dcmtk_ftp_url = function(version) {
 #' Can be a character vector or character scalar.
 #' For example, if want to use \code{ICU} versus \code{libiconv},
 #' use \code{cmake_opts = "-DDCMTK_ENABLE_CHARSET_CONVERSION=ICU"}
-#' @rdname install_dcmtk
+#' @rdname aaa_install_dcmtk
 #' @importFrom git2r clone checkout
 source_install_dcmtk = function(
   type = c("osx",

@@ -44,10 +44,16 @@ Logical if installed
 Installs the DICOM ToolKit
 }
 \examples{
+in_ci <- function() {
+  nzchar(Sys.getenv("CI"))
+}
+
 install_dir =  tempfile()
 dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
-install_dcmtk(install_dir = install_dir)
-
+res = install_dcmtk(install_dir = install_dir)
+if (in_ci() & !res) {
+  source_install_dcmtk()
+}
 
 type =   type = c("osx", "linux_static", "linux_dynamic", "windows")
 arch = c("x86_64", "i686")
