@@ -15,3 +15,8 @@ parse_hdr(hdr)
 \description{
 Parses a DICOM header to a \code{data.frame}
 }
+\examples{
+file = system.file("extdata", "example.dcm", package = "dcmtk")
+hdr = dcmdump(file)
+parsed = parse_hdr(hdr)
+}

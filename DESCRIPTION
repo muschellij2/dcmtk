@@ -1,7 +1,7 @@
 Package: dcmtk
 Type: Package
 Title: Wrapper for 'DICOM' Toolkit ('DCMTK')
-Version: 0.6.5
+Version: 0.6.6
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Set of functions porting the 
@@ -25,4 +25,6 @@ URL: https://github.com/muschellij2/dcmtk,
 BugReports: https://github.com/muschellij2/dcmtk/issues
 Suggests: testthat,
     httr,
-    covr
+    covr,
+    png
+

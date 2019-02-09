@@ -38,3 +38,7 @@ Character vector of header information
 \description{
 Reads in the DICOM header from a file
 }
+\examples{
+file = system.file("extdata", "example.dcm", package = "dcmtk")
+read_dicom_header(file)
+}

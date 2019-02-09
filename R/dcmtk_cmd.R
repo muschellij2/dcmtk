@@ -3,6 +3,7 @@
 #'
 #' @param cmd (character) DCMTK command
 #' @param file (character) files to be manipulated
+#' @param outfile (character) output filenames
 #' @param opts (character) operations to be passed to \code{cmd}
 #' @param frontopts (character) options/character to put in before filename
 #' @param verbose (logical) print out command before running
@@ -18,6 +19,7 @@ dcmtk_cmd = function(
   cmd,
   file = NULL,
   opts = "",
+  outfile = NULL,
   frontopts = "",
   verbose = TRUE,
   intern = FALSE,
@@ -45,6 +47,11 @@ dcmtk_cmd = function(
   s = paste(s, file)
   opts = paste(opts, collapse = " ")
   cmd = paste(s, opts)
+  if (!is.null(outfile)) {
+    outfile = paste(names(outfile), outfile)
+    outfile = paste(outfile, collapse = " ")
+    cmd = paste(cmd, outfile)
+  }
 
   if (verbose) {
     message(cmd, "\n")

@@ -5,6 +5,10 @@
 #'
 #' @return \code{data.frame} of tags and values
 #' @export
+#' @examples
+#' file = system.file("extdata", "example.dcm", package = "dcmtk")
+#' hdr = dcmdump(file)
+#' parsed = parse_hdr(hdr)
 parse_hdr = function(hdr){
   # xhdr = hdr
   #

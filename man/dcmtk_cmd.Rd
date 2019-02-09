@@ -4,8 +4,8 @@
 \alias{dcmtk_cmd}
 \title{DCMTK Command Wrapper}
 \usage{
-dcmtk_cmd(cmd, file = NULL, opts = "", frontopts = "",
-  verbose = TRUE, intern = FALSE, run = TRUE, ...)
+dcmtk_cmd(cmd, file = NULL, opts = "", outfile = NULL,
+  frontopts = "", verbose = TRUE, intern = FALSE, run = TRUE, ...)
 }
 \arguments{
 \item{cmd}{(character) DCMTK command}
@@ -13,6 +13,8 @@ dcmtk_cmd(cmd, file = NULL, opts = "", frontopts = "",
 \item{file}{(character) files to be manipulated}
 
 \item{opts}{(character) operations to be passed to \code{cmd}}
+
+\item{outfile}{(character) output filenames}
 
 \item{frontopts}{(character) options/character to put in before filename}
 

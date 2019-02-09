@@ -26,3 +26,7 @@ Wrapper of \code{dcmdump} from DCMTK
 \code{frontopts = "-q --print-all --load-short --print-filename"} by
 default
 }
+\examples{
+file = system.file("extdata", "example.dcm", package = "dcmtk")
+dcmdump(file)
+}

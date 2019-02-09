@@ -8,6 +8,9 @@
 #'
 #' @return Character vector of information
 #' @export
+#' @examples
+#' file = system.file("extdata", "example.dcm", package = "dcmtk")
+#' dcmdump(file)
 dcmdump = function(file,
                    ...) {
 

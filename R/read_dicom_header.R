@@ -15,6 +15,9 @@
 #'
 #' @return Character vector of header information
 #' @export
+#' @examples
+#' file = system.file("extdata", "example.dcm", package = "dcmtk")
+#' read_dicom_header(file)
 read_dicom_header = function(
   file = "*.dcm",
   replace_names = FALSE,
