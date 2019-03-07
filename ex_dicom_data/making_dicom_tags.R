@@ -8,6 +8,7 @@ library(httr)
 library(xml2)
 library(tidyr)
 library(data.table)
+library(tools)
 
 
 files = c("ex_dicom_data/id_dicom_dump.html",
@@ -43,6 +44,19 @@ tabs = lapply(tabs, function(x){
 dicom_tags = rbindlist(tabs)
 dicom_tags = as.data.frame(dicom_tags)
 dicom_tags = dicom_tags %>% arrange(tag, name)
+
+
+sub_weird_space = function(x) {
+  x = gsub("\xc2\xa0", " ", x)
+  x = gsub("\xe2\x80\x8b", " ", x)
+  x = gsub("\xc2\xb5", " ", x)
+  x = gsub("\\s+", " ", x)
+  x
+}
+dicom_tags = dicom_tags %>%
+  mutate(name = sub_weird_space(name),
+         keyword = sub_weird_space(keyword),
+         retired = ifelse(is.na(retired), "", retired))
 
 dicom_tags$tag = tolower(dicom_tags$tag)
 
