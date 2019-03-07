@@ -56,7 +56,7 @@ sub_weird_space = function(x) {
 dicom_tags = dicom_tags %>%
   mutate(name = sub_weird_space(name),
          keyword = sub_weird_space(keyword),
-         keywork = gsub(" ", "", keyword),
+         keyword = gsub(" ", "", keyword),
          retired = ifelse(is.na(retired), "", retired))
 
 dicom_tags$tag = tolower(dicom_tags$tag)
