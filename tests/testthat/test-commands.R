@@ -1,8 +1,8 @@
 context("Running non-modifying dcmtk commands")
 
-if (!install_dcmtk()) {
 
-  install_dcmtk()
+if (!install_dcmtk(install_dir = install_dir)) {
+  install_dcmtk(install_dir = install_dir)
 }
 dcm_dir = system.file("extdata", package = "dcmtk")
 files = list.files(pattern = ".dcm$",
@@ -19,7 +19,7 @@ test_that("Data directory exists", {
 })
 
 test_that("dcmtk is installed", {
-  expect_true(install_dcmtk())
+  expect_true(install_dcmtk(install_dir = install_dir))
 })
 
 test_that("dcmdump with files", {

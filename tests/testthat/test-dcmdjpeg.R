@@ -1,7 +1,7 @@
 context("Running DECOMPRESS commands")
 
-if (!install_dcmtk()) {
-  install_dcmtk()
+if (!install_dcmtk(install_dir = install_dir)) {
+  install_dcmtk(install_dir = install_dir)
 }
 dcm_dir = system.file("extdata", package = "dcmtk")
 ofiles = list.files(pattern = ".dcm$",

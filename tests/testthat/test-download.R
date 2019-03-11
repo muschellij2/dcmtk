@@ -11,8 +11,8 @@ test_that("Download files exists", {
   x = lists[[1]]
 
   sapply(lists, function(x) {
-    install_dir =  tempfile()
-    dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
+    # install_dir =  tempfile()
+    # dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
     base_url = dcmtk_ftp_url(x$version)
     filename = do.call(dcmtk_filename, args = x)
     url = paste0(base_url, filename)

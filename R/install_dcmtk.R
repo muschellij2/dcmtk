@@ -21,9 +21,14 @@
 #'
 #' install_dir =  tempfile()
 #' dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
-#' res = install_dcmtk(install_dir = install_dir)
+#' res = try({
+#' install_dcmtk(install_dir = install_dir)
+#' })
+#' if (inherits(res, "try-error")) {
+#' res = FALSE
+#' }
 #' if (in_ci() & !res) {
-#'   # source_install_dcmtk()
+#'   # source_install_dcmtk(install_dir = install_dir)
 #' }
 #'
 #' type =   type = c("osx", "linux_static", "linux_dynamic", "windows")
