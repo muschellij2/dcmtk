@@ -48,7 +48,7 @@ dcmtk_cmd = function(
   opts = paste(opts, collapse = " ")
   cmd = paste(s, opts)
   if (!is.null(outfile)) {
-    outfile = paste(names(outfile), outfile)
+    outfile = paste(names(outfile), shQuote(outfile))
     outfile = paste(outfile, collapse = " ")
     cmd = paste(cmd, outfile)
   }

@@ -104,7 +104,6 @@ install_dcmtk = function(
     if (ext == "bz2") {
       files = utils::untar(
         destfile,
-        compressed = "bzip2",
         list = TRUE,
         exdir = install_dir)
     }
@@ -120,7 +119,6 @@ install_dcmtk = function(
     if (ext == "bz2") {
       res = utils::untar(
         destfile,
-        compressed = "bzip2",
         exdir = install_dir)
       if (res != 0) {
         warning("Untarring the download did not succeed correctly!")
