@@ -11,9 +11,9 @@
 "date_tags"
 
 
-#' @title Datetime Tags for Anonymization
+#' @title Date-time Tags for Anonymization
 #'
-#' @description A \code{data.frame} of tags of datetimes, useful for DICOM
+#' @description A \code{data.frame} of tags of date-times, useful for DICOM
 #' anonymization.
 #'
 #' @format A \code{data.frame} with 2 columns

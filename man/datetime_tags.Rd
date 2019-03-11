@@ -3,7 +3,7 @@
 \docType{data}
 \name{datetime_tags}
 \alias{datetime_tags}
-\title{Datetime Tags for Anonymization}
+\title{Date-time Tags for Anonymization}
 \format{A \code{data.frame} with 2 columns
 \describe{
 \item{tag}{the tag identifier for the field }
@@ -13,7 +13,7 @@
 datetime_tags
 }
 \description{
-A \code{data.frame} of tags of datetimes, useful for DICOM
+A \code{data.frame} of tags of date-times, useful for DICOM
 anonymization.
 }
 \keyword{datasets}
