@@ -1,12 +1,14 @@
 context("Running dcmtk commands")
 
-if (!install_dcmtk(install_dir = install_dir)) {
-  install_dcmtk(install_dir = install_dir)
+if (!have_dcmtk) {
+  if (!install_dcmtk(install_dir = install_dir)) {
+    install_dcmtk(install_dir = install_dir)
+  }
 }
 dcm_dir = system.file("extdata", package = "dcmtk")
 ofiles = list.files(pattern = ".dcm$",
-                   path = dcm_dir,
-                   full.names = TRUE)
+                    path = dcm_dir,
+                    full.names = TRUE)
 
 # copy files for modification
 files = file.path(tempdir(), basename(ofiles))

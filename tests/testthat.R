@@ -1,12 +1,15 @@
 library(testthat)
 library(dcmtk)
 
-install_dir = tempdir()
-options(dcmtk.path = install_dir)
+have_dcmtk = have_dcmtk_cmd("dcmdump")
+if (!have_dcmtk) {
+  install_dir = tempdir()
+  options(dcmtk.path = install_dir)
+}
 in_ci <- function() {
   nzchar(Sys.getenv("CI"))
 }
-if (in_ci()) {
+if (!have_dcmtk) {
   res = try({
     install_dcmtk(install_dir = install_dir)
   })

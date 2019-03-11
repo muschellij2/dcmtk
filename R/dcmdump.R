@@ -9,6 +9,19 @@
 #' @return Character vector of information
 #' @export
 #' @examples
+#' if (!have_dcmtk_cmd("dcmdump")) {
+#' install_dir = tempdir()
+#' options(dcmtk.path = install_dir)
+#'   res = try({
+#'     install_dcmtk(install_dir = install_dir)
+#'   })
+#'   if (inherits(res, "try-error")) {
+#'     res = FALSE
+#'   }
+#'   if (!res) {
+#'     source_install_dcmtk(install_dir = install_dir)
+#'   }
+#' }
 #' file = system.file("extdata", "example.dcm", package = "dcmtk")
 #' dcmdump(file)
 dcmdump = function(file,
