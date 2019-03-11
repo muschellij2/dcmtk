@@ -26,6 +26,8 @@
 #' file = system.file("extdata", "example.dcm", package = "dcmtk")
 #' png_file = dcmj2pnm(file)
 #' print(png_file)
+#' print(file.exists(png_file))
+#' print(normalizePath(png_file))
 #' img = png::readPNG(png_file)
 #' plot(1:2, type='n')
 #' image(img)
