@@ -41,10 +41,10 @@ dcmtk_cmd_path = function(cmd){
     if (check_cmd == "") {
       check_cmd = system.file("bin", cmd, package = "dcmtk")
     }
-  } else {
-    if (sysname %in% "windows") {
-      check_cmd = gsub("\\", "/", check_cmd)
-    }
+  }
+  if (sysname %in% "windows") {
+    check_cmd = gsub("\\\\", "/", check_cmd)
+    check_cmd = gsub("\\\\", "/", check_cmd)
   }
   if (is.null(check_cmd)) {
     check_cmd = ""
