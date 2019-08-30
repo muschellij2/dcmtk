@@ -17,8 +17,8 @@ dcmtk_filename(type, arch, version)
 dcmtk_ftp_url(version)
 
 source_install_dcmtk(type = c("osx", "linux", "windows"),
-  version = c("3.6.3", "3.6.0"), install_dir = system.file(package =
-  "dcmtk"), cmake_opts = NULL)
+  version = c("3.6.3", "3.6.4", "3.6.0"),
+  install_dir = system.file(package = "dcmtk"), cmake_opts = NULL)
 }
 \arguments{
 \item{type}{Which format of dcmtk should be downloaded.  If not specified,

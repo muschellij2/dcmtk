@@ -13,6 +13,7 @@
 #'
 #' @importFrom utils download.file unzip untar
 #' @importFrom tools file_ext
+#' @importFrom fs path
 #' @rdname aaa_install_dcmtk
 #' @examples
 #' in_ci <- function() {
@@ -81,11 +82,11 @@ install_dcmtk = function(
   fols = c("bin", "share",
            # "lib", "include",
            "etc")
-  out_fols = file.path(install_dir, fols)
+  out_fols = fs::path(install_dir, fols)
 
   if (!all(file.exists(out_fols)) || force) {
 
-    destfile = file.path(
+    destfile = fs::path(
       install_dir,
       filename)
     dl = utils::download.file(url, destfile)
@@ -107,7 +108,7 @@ install_dcmtk = function(
         list = TRUE,
         exdir = install_dir)
     }
-    fnames = strsplit(files, .Platform$file.sep)
+    fnames = strsplit(files, "/")
     fol = sapply(fnames, `[`, 1)
     fol = unique(fol)
     stopifnot(length(fol) == 1)
@@ -125,8 +126,8 @@ install_dcmtk = function(
       }
     }
 
-    files = file.path(install_dir, fol, fols)
-    out_files = file.path(install_dir, fols)
+    files = fs::path(install_dir, fol, fols)
+    out_files = fs::path(install_dir, fols)
 
     file.rename(files, out_files)
     file.remove(destfile)
@@ -223,7 +224,7 @@ source_install_dcmtk = function(
   type = c("osx",
            "linux",
            "windows"),
-  version = c( "3.6.3", "3.6.0"),
+  version = c( "3.6.3", "3.6.4", "3.6.0"),
   install_dir = system.file(package = "dcmtk"),
   cmake_opts = NULL
 ) {
@@ -271,25 +272,25 @@ source_install_dcmtk = function(
   cmake_opts = c(paste0("-DCMAKE_INSTALL_PREFIX=", install_dir),
                  cmake_opts)
   cmake_opts = paste(cmake_opts, collapse = " ")
-  cmd = paste("cmake", cmake_opts, tdir)
+  cmd = paste(Sys.which("cmake"), cmake_opts, tdir)
   res = system(cmd)
   if (res != 0) {
     warning("CMake install non-zero exit status")
   }
-  make_cmd = "make"
+  make_cmd = Sys.which("make")
   res = system(make_cmd)
   if (res != 0) {
     warning("Make returned non-zero status")
   }
 
-  make_install_cmd = "make install"
+  make_install_cmd = paste0(Sys.which("make"), " install")
   res = system(make_install_cmd)
   if (res != 0) {
     warning("Make install non-zero exit status")
   }
   fols = c("bin", "share",
            "etc")
-  out_fols = file.path(install_dir, fols)
+  out_fols = fs::path(install_dir, fols)
   return(all(file.exists(out_fols)))
 
 }
