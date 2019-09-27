@@ -30,7 +30,7 @@ The flags already added are
 
 \item{path}{if \code{recursive = TRUE}, then this will the path scanned.}
 
-\item{...}{not used}
+\item{...}{passed to \code{\link{dcmdump}}}
 }
 \value{
 Character vector of header information

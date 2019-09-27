@@ -11,7 +11,7 @@
 #' @param recursive logical indicating if the \code{--recurse} flag be passed to
 #' \code{\link{dcmdump}}
 #' @param path if \code{recursive = TRUE}, then this will the path scanned.
-#' @param ... not used
+#' @param ... passed to \code{\link{dcmdump}}
 #'
 #' @return Character vector of header information
 #' @export
@@ -79,7 +79,8 @@ read_single_dicom_header = function(
     }
   }
   hdr = dcmdump(file = file,
-                frontopts = opts)
+                frontopts = opts,
+                ...)
   hdr = enc2utf8(hdr)
   hdr = parse_hdr(hdr)
   if (replace_names) {
