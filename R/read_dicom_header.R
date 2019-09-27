@@ -44,7 +44,7 @@ read_dicom_header = function(
   opts = paste("-q --print-all --load-short --print-filename",
                add_opts)
   hdr = dcmdump(file = file,
-                frontopts = opts)
+                frontopts = opts, ...)
   hdr = enc2utf8(hdr)
   hdr = parse_hdr(hdr)
   if (replace_names) {
@@ -66,7 +66,8 @@ read_dicom_header = function(
 read_single_dicom_header = function(
   file = "",
   replace_names = FALSE,
-  add_opts = ""
+  add_opts = "",
+  ...
 ) {
   add_opts = paste(add_opts, collapse = " ")
   opts = paste("-q --print-all --load-short --print-filename",
