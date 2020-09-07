@@ -6,11 +6,16 @@
 \alias{dcmhd}
 \title{Read DICOM File}
 \usage{
-read_dicom_header(file = "*.dcm", replace_names = FALSE,
-  add_opts = "", recursive = FALSE, path = ".", ...)
+read_dicom_header(
+  file = "*.dcm",
+  replace_names = FALSE,
+  add_opts = "",
+  recursive = FALSE,
+  path = ".",
+  ...
+)
 
-read_single_dicom_header(file = "", replace_names = FALSE,
-  add_opts = "", ...)
+read_single_dicom_header(file = "", replace_names = FALSE, add_opts = "", ...)
 
 dcmhd(...)
 }

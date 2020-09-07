@@ -16,6 +16,7 @@ dcm2pdf = function(
   if (is.null(outfile)) {
     outfile = tempfile(fileext = ".pdf")
   }
+  file = shQuote(normalizePath(file, winslash = "/"))
   dcmtk_cmd(
     cmd = "dcm2pdf",
     frontopts = opts,

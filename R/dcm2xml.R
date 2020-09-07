@@ -16,6 +16,7 @@ dcm2xml = function(
   if (is.null(outfile)) {
     outfile = tempfile(fileext = ".xml")
   }
+  file = shQuote(normalizePath(file, winslash = "/"))
   dcmtk_cmd(
     cmd = "dcm2xml",
     frontopts = opts,

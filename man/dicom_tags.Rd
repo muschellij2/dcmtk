@@ -4,7 +4,8 @@
 \name{dicom_tags}
 \alias{dicom_tags}
 \title{DICOM Tags}
-\format{A \code{data.frame} with 6 columns
+\format{
+A \code{data.frame} with 6 columns
 \describe{
 \item{tag}{the tag identifier for the field }
 \item{name}{the name of the field }
@@ -12,7 +13,8 @@
 \item{vr}{value representation}
 \item{vm}{value multiplier}
 \item{retired}{indication of retired tag}
-}}
+}
+}
 \usage{
 dicom_tags
 }

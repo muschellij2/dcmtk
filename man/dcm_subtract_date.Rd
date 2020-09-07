@@ -4,8 +4,12 @@
 \alias{dcm_subtract_date}
 \title{DICOM Anonymization}
 \usage{
-dcm_subtract_date(file, base_date, origin = as.Date("19000101", format =
-  "\%Y\%m\%d"), date_tags = dcmtk::date_tags$tag)
+dcm_subtract_date(
+  file,
+  base_date,
+  origin = as.Date("19000101", format = "\%Y\%m\%d"),
+  date_tags = dcmtk::date_tags$tag
+)
 }
 \arguments{
 \item{file}{DICOM Image}

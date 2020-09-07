@@ -11,6 +11,7 @@ dcmodify = function(
   file,
   ...) {
 
+  file = shQuote(normalizePath(file, winslash = "/"))
   hdr = dcmtk_cmd(cmd = "dcmodify",
                   file = file,
                   ...)

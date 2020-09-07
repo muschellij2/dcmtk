@@ -7,18 +7,24 @@
 \alias{source_install_dcmtk}
 \title{Install DCMTK}
 \usage{
-install_dcmtk(type = c("osx", "linux_static", "linux_dynamic",
-  "windows"), force = FALSE, version = c("3.6.3", "3.6.0"),
-  arch = c("x86_64", "i686"), install_dir = system.file(package =
-  "dcmtk"))
+install_dcmtk(
+  type = c("osx", "linux_static", "linux_dynamic", "windows"),
+  force = FALSE,
+  version = c("3.6.3", "3.6.0"),
+  arch = c("x86_64", "i686"),
+  install_dir = system.file(package = "dcmtk")
+)
 
 dcmtk_filename(type, arch, version)
 
 dcmtk_ftp_url(version)
 
-source_install_dcmtk(type = c("osx", "linux", "windows"),
+source_install_dcmtk(
+  type = c("osx", "linux", "windows"),
   version = c("3.6.3", "3.6.4", "3.6.0"),
-  install_dir = system.file(package = "dcmtk"), cmake_opts = NULL)
+  install_dir = system.file(package = "dcmtk"),
+  cmake_opts = NULL
+)
 }
 \arguments{
 \item{type}{Which format of dcmtk should be downloaded.  If not specified,

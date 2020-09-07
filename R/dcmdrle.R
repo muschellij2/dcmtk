@@ -17,6 +17,7 @@ dcmdrle = function(
   if (is.null(outfile)) {
     outfile = tempfile(fileext = ".dcm")
   }
+  file = shQuote(normalizePath(file, winslash = "/"))
   dcmtk_cmd(
     cmd = "dcmdrle",
     frontopts = opts,

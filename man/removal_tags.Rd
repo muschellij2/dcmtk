@@ -4,11 +4,13 @@
 \name{removal_tags}
 \alias{removal_tags}
 \title{Removal Tags for Anonymization}
-\format{A \code{data.frame} with 2 columns
+\format{
+A \code{data.frame} with 2 columns
 \describe{
 \item{tag}{the tag identifier for the field }
 \item{name}{the name of the field }
-}}
+}
+}
 \usage{
 removal_tags
 }

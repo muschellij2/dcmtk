@@ -4,11 +4,13 @@
 \name{datetime_tags}
 \alias{datetime_tags}
 \title{Date-time Tags for Anonymization}
-\format{A \code{data.frame} with 2 columns
+\format{
+A \code{data.frame} with 2 columns
 \describe{
 \item{tag}{the tag identifier for the field }
 \item{name}{the name of the field }
-}}
+}
+}
 \usage{
 datetime_tags
 }

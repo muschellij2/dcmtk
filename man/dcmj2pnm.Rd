@@ -5,8 +5,7 @@
 \title{Convert DICOM images to PGM/PPM, PNG, JPEG or BMP using
 \code{dcmdump} from DCMTK}
 \usage{
-dcmj2pnm(file, outfile = tempfile(fileext = ".png"),
-  opts = "--write-png", ...)
+dcmj2pnm(file, outfile = tempfile(fileext = ".png"), opts = "--write-png", ...)
 }
 \arguments{
 \item{file}{DICOM file name}

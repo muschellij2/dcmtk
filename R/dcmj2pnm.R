@@ -37,6 +37,7 @@ dcmj2pnm = function(file,
                     opts = "--write-png",
                     ...) {
 
+  file = shQuote(normalizePath(file, winslash = "/"))
   names(outfile) = NULL
   res = dcmtk_cmd(
     cmd = "dcmj2pnm",

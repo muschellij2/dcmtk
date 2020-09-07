@@ -33,6 +33,8 @@ dcmdjpeg = function(
 
   args = list(...)
   args$opts = c(xoutfile, args$opts)
+
+  file = shQuote(normalizePath(file, winslash = "/"))
   args$file = file
   args$cmd = "dcmdjpeg"
 
