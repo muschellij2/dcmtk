@@ -38,6 +38,7 @@ dcmj2pnm = function(file,
                     ...) {
 
   file = shQuote(normalizePath(file, winslash = "/"))
+  outfile = path.expand(outfile)
   names(outfile) = NULL
   res = dcmtk_cmd(
     cmd = "dcmj2pnm",
