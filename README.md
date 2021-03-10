@@ -15,7 +15,7 @@ Status](https://img.shields.io/coveralls/muschellij2/dcmtk.svg)](https://coveral
 <!-- badges: end -->
 
 The goal of `dcmtk` is to wrap the ‘DICOM’ Toolkit (‘DCMTK’)
-<http://dicom.offis.de/dcmtk.php.en>
+<https://dicom.offis.de/dcmtk.php.en>.
 
 Set of functions porting the Digital Imaging and Communications in
 Medicine (‘DICOM’) toolkit, a set of functions working with imaging

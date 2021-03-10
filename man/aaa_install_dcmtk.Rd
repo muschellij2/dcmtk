@@ -10,7 +10,7 @@
 install_dcmtk(
   type = c("osx", "linux_static", "linux_dynamic", "windows"),
   force = FALSE,
-  version = c("3.6.3", "3.6.0"),
+  version = c("3.6.6", "3.6.3", "3.6.0"),
   arch = c("x86_64", "i686"),
   install_dir = system.file(package = "dcmtk")
 )
@@ -70,7 +70,7 @@ if (!have_dcmtk_cmd("dcmdump")) {
 
 type =   type = c("osx", "linux_static", "linux_dynamic", "windows")
 arch = c("x86_64", "i686")
-version = c( "3.6.3", "3.6.0")
+version = eval(formals(install_dcmtk)$version)
 eg = expand.grid(type = type, arch = arch, version = version,
 stringsAsFactors = FALSE)
 lists = apply(eg, 1, as.list)

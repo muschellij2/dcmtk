@@ -36,7 +36,7 @@
 #'
 #' type =   type = c("osx", "linux_static", "linux_dynamic", "windows")
 #' arch = c("x86_64", "i686")
-#' version = c( "3.6.3", "3.6.0")
+#' version = eval(formals(install_dcmtk)$version)
 #' eg = expand.grid(type = type, arch = arch, version = version,
 #' stringsAsFactors = FALSE)
 #' lists = apply(eg, 1, as.list)
@@ -49,7 +49,7 @@ install_dcmtk = function(
            "linux_dynamic",
            "windows"),
   force = FALSE,
-  version = c("3.6.3", "3.6.0"),
+  version = c("3.6.6", "3.6.3", "3.6.0"),
   arch = c("x86_64", "i686"),
   install_dir = system.file(package = "dcmtk")
 ) {
@@ -89,10 +89,18 @@ install_dcmtk = function(
     destfile = fs::path(
       install_dir,
       filename)
-    dl = utils::download.file(url, destfile)
-    if (dl != 0) {
-      warning(paste0("Download indicated not successful - ",
-                     "please rerun with force = TRUE if errors"))
+    dl = try({utils::download.file(url, destfile, mode = "wb")}, silent = TRUE)
+    if (inherits(dl, "try-error") || dl != 0) {
+      if (!grepl("static", url)) {
+        url = sub("[.]tar", "-static.tar", url)
+        url = sub("[.]zip", "-static.zip", url)
+      }
+      file.remove(destfile)
+      dl = try({utils::download.file(url, destfile, mode = "wb")}, silent = TRUE)
+      if (inherits(dl, "try-error") || dl != 0) {
+        warning(paste0("Download indicated not successful - ",
+                       "please rerun with force = TRUE if errors"))
+      }
     }
     ext = tools::file_ext(filename)
     if (ext == "zip") {

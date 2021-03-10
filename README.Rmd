@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 
-The goal of `dcmtk` is to wrap the 'DICOM' Toolkit ('DCMTK') http://dicom.offis.de/dcmtk.php.en
+The goal of `dcmtk` is to wrap the 'DICOM' Toolkit ('DCMTK') https://dicom.offis.de/dcmtk.php.en.
 
 Set of functions porting the Digital Imaging and Communications in Medicine ('DICOM') toolkit, a set of functions working with imaging data.
 
