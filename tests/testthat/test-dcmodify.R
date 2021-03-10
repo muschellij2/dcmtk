@@ -1,4 +1,4 @@
-context("Running dcmtk commands")
+testthat::context("Running dcmtk commands")
 
 if (!have_dcmtk) {
   if (!install_dcmtk(install_dir = install_dir)) {

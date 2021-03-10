@@ -1,6 +1,6 @@
-context("Test Downloads")
+testthat::context("Test Downloads")
 
-test_that("Download files exists", {
+testthat::test_that("Download files exists", {
 
   type =   type = c("osx", "linux_static", "linux_dynamic", "windows")
   arch = c("x86_64", "i686")

@@ -27,7 +27,9 @@
 dcmdump = function(file,
                    ...) {
 
-  file = shQuote(normalizePath(file, winslash = "/"))
+  suppressWarnings({
+    file = normalizePath(file, winslash = "/")
+  })
   hdr = dcmtk_cmd(
     cmd = "dcmdump",
     file = file,

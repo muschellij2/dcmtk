@@ -32,7 +32,7 @@ dcmtk_cmd = function(
   ##########################
   # Add frontopts
   ##########################
-  s = sprintf('%s %s ', cmd, frontopts)
+  s = sprintf('%s %s ', shQuote(cmd), frontopts)
   s = gsub("\\s\\s+", " ", s)
   # if statement for non-unicode things
   if (grepl("\t", s) |
