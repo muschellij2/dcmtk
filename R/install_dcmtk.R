@@ -91,11 +91,16 @@ install_dcmtk = function(
       filename)
     dl = try({utils::download.file(url, destfile, mode = "wb")}, silent = TRUE)
     if (inherits(dl, "try-error") || dl != 0) {
+      if (file.exists(destfile)) {
+        file.remove(destfile)
+      }
       if (!grepl("static", url)) {
         url = sub("[.]tar", "-static.tar", url)
         url = sub("[.]zip", "-static.zip", url)
+
+        destfile = sub("[.]tar", "-static.tar", destfile)
+        destfile = sub("[.]zip", "-static.zip", destfile)
       }
-      file.remove(destfile)
       dl = try({utils::download.file(url, destfile, mode = "wb")}, silent = TRUE)
       if (inherits(dl, "try-error") || dl != 0) {
         warning(paste0("Download indicated not successful - ",
@@ -254,8 +259,8 @@ source_install_dcmtk = function(
       "windows"))
   version = match.arg(version)
 
-#   install_dir = tempfile()
-#   cmake_opts = "-DDCMTK_ENABLE_CHARSET_CONVERSION=ICU"
+  #   install_dir = tempfile()
+  #   cmake_opts = "-DDCMTK_ENABLE_CHARSET_CONVERSION=ICU"
   dir.create(install_dir, showWarnings = FALSE, recursive = TRUE)
   tdir = tempfile()
   dir.create(tdir)

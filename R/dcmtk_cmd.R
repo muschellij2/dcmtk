@@ -28,11 +28,21 @@ dcmtk_cmd = function(
 
   check_dcmtk_cmd(cmd)
   cmd = dcmtk_cmd_path(cmd = cmd)
-
+  DCMDICTPATH = ""
+  if (length(cmd) > 0 && nchar(cmd) > 0) {
+    DCMDICTPATH = dirname(dirname(cmd))
+    DCMDICTPATH = file.path(DCMDICTPATH, "share", "dcmtk", "dicom.dic")
+    if (file.exists(DCMDICTPATH)) {
+      DCMDICTPATH = shQuote(normalizePath(DCMDICTPATH, winslash = "/"))
+      DCMDICTPATH = paste0("DCMDICTPATH=", DCMDICTPATH, "; ")
+    } else {
+      DCMDICTPATH = ""
+    }
+  }
   ##########################
   # Add frontopts
   ##########################
-  s = sprintf('%s %s ', shQuote(cmd), frontopts)
+  s = sprintf('%s %s %s ', DCMDICTPATH, shQuote(cmd), frontopts)
   s = gsub("\\s\\s+", " ", s)
   # if statement for non-unicode things
   if (grepl("\t", s) |
