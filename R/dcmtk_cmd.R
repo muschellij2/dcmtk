@@ -28,13 +28,14 @@ dcmtk_cmd = function(
 
   check_dcmtk_cmd(cmd)
   cmd = dcmtk_cmd_path(cmd = cmd)
+  sysname = tolower(Sys.info()["sysname"])
   DCMDICTPATH = ""
-  if (length(cmd) > 0 && nchar(cmd) > 0) {
+  if (length(cmd) > 0 && nchar(cmd) > 0 && !sysname %in% "windows") {
     DCMDICTPATH = dirname(dirname(cmd))
     DCMDICTPATH = file.path(DCMDICTPATH, "share", "dcmtk", "dicom.dic")
     if (file.exists(DCMDICTPATH)) {
       DCMDICTPATH = shQuote(normalizePath(DCMDICTPATH, winslash = "/"))
-      DCMDICTPATH = paste0("DCMDICTPATH=", DCMDICTPATH, "; ")
+      DCMDICTPATH = paste0("export DCMDICTPATH=", DCMDICTPATH, "; ")
     } else {
       DCMDICTPATH = ""
     }
