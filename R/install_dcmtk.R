@@ -144,6 +144,7 @@ install_dcmtk = function(
 
     file.rename(files, out_files)
     file.remove(destfile)
+    try({Sys.chmod(paths = out_files)}, silent = TRUE)
     if (sysname %in% c("linux", "darwin")) {
       for (ifile in out_files) {
         system(sprintf("chmod +x %s", ifile))
