@@ -18,7 +18,7 @@ check_dcmtk_cmd = function(cmd){
   ret = have_dcmtk_cmd(cmd)
   run_str = paste0("DCMTK command ", cmd, " not found! ",
                    "If DCMTK not installed system wide, ",
-                   "run install_dcmtk()!")
+                   "see info https://dicom.offis.de/en/dcmtk/dcmtk-tools/!")
   if (!ret) {
     stop(run_str)
   } else {

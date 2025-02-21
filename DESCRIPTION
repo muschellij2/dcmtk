@@ -1,7 +1,7 @@
 Package: dcmtk
 Type: Package
 Title: Wrapper for 'DICOM' Toolkit ('DCMTK')
-Version: 0.6.9
+Version: 0.7.0
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Set of functions porting the 
@@ -9,14 +9,11 @@ Description: Set of functions porting the
     set of functions working with imaging data. 
 License: GPL-2
 Imports:
-    utils,
     tools,
     lubridate,
     stringr,
     tidyr,
-    dplyr,
-    git2r,
-    fs
+    dplyr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
