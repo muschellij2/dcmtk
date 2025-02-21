@@ -29,7 +29,7 @@
 #'   if (inherits(res, "try-error")) {
 #'     res = FALSE
 #'   }
-#'   if (in_ci() & !res) {
+#'   if (in_ci() || !res) {
 #'     source_install_dcmtk(install_dir = install_dir)
 #'   }
 #' }

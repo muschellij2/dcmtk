@@ -55,7 +55,8 @@ dcmtk_cmd = function(
     file = path.expand(file)
   }
   # file = shQuote(file)
-  s = paste(s, file)
+  # added collapse so that we don't have the full printout
+  s = paste(s, paste(file, collapse = " "))
   opts = paste(opts, collapse = " ")
   cmd = paste(s, opts)
   if (!is.null(outfile)) {
