@@ -10,6 +10,8 @@
 #' \code{-q --print-all --load-short --print-filename}
 #' @param recursive logical indicating if the \code{--recurse} flag be passed to
 #' \code{\link{dcmdump}}
+#' @param fail_on_nonzero_exit should a non-zero exit status on `dcmdump`
+#' cause an error (`TRUE`) or a warning (`FALSE`)?
 #' @param path if \code{recursive = TRUE}, then this will the path scanned.
 #' @param ... passed to \code{\link{dcmdump}}
 #'
@@ -19,12 +21,13 @@
 #' file = system.file("extdata", "example.dcm", package = "dcmtk")
 #' read_dicom_header(file)
 read_dicom_header = function(
-  file = "*.dcm",
-  replace_names = FALSE,
-  add_opts = "",
-  recursive = FALSE,
-  path = ".",
-  ...
+    file = "*.dcm",
+    replace_names = FALSE,
+    add_opts = "",
+    recursive = FALSE,
+    path = ".",
+    fail_on_nonzero_exit = FALSE,
+    ...
 ) {
   if (recursive) {
     add_opts = c(add_opts,
@@ -45,8 +48,20 @@ read_dicom_header = function(
                add_opts)
   hdr = dcmdump(file = file,
                 frontopts = opts, ...)
+  status = attr(hdr, "status")
+  if (!is.null(status) && any(status != 0)) {
+    msg = "dcmtk: Non-zero exit status"
+    if (fail_on_nonzero_exit) {
+      print(hdr)
+      stop(msg)
+    } else {
+      warning(msg)
+    }
+  }
+  fail_on_nonzero_exit
   hdr = enc2utf8(hdr)
   hdr = parse_hdr(hdr)
+
   if (replace_names) {
     hdr$ind = seq(nrow(hdr))
     tag =  dcmtk::dicom_tags[, c("tag", "keyword")]
@@ -64,10 +79,11 @@ read_dicom_header = function(
 #' @rdname read_dicom_header
 #' @export
 read_single_dicom_header = function(
-  file = "",
-  replace_names = FALSE,
-  add_opts = "",
-  ...
+    file = "",
+    replace_names = FALSE,
+    add_opts = "",
+    fail_on_nonzero_exit = FALSE,
+    ...
 ) {
   add_opts = paste(add_opts, collapse = " ")
   opts = paste("-q --print-all --load-short --print-filename",
@@ -82,6 +98,16 @@ read_single_dicom_header = function(
   hdr = dcmdump(file = file,
                 frontopts = opts,
                 ...)
+  status = attr(hdr, "status")
+  if (!is.null(status) && any(status != 0)) {
+    msg = "dcmtk: Non-zero exit status"
+    if (fail_on_nonzero_exit) {
+      print(hdr)
+      stop(msg)
+    } else {
+      warning(msg)
+    }
+  }
   hdr = enc2utf8(hdr)
   hdr = parse_hdr(hdr)
   if (replace_names) {

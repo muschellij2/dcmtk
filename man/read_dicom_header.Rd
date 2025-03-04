@@ -12,10 +12,17 @@ read_dicom_header(
   add_opts = "",
   recursive = FALSE,
   path = ".",
+  fail_on_nonzero_exit = FALSE,
   ...
 )
 
-read_single_dicom_header(file = "", replace_names = FALSE, add_opts = "", ...)
+read_single_dicom_header(
+  file = "",
+  replace_names = FALSE,
+  add_opts = "",
+  fail_on_nonzero_exit = FALSE,
+  ...
+)
 
 dcmhd(...)
 }
@@ -34,6 +41,9 @@ The flags already added are
 \code{\link{dcmdump}}}
 
 \item{path}{if \code{recursive = TRUE}, then this will the path scanned.}
+
+\item{fail_on_nonzero_exit}{should a non-zero exit status on `dcmdump`
+cause an error (`TRUE`) or a warning (`FALSE`)?}
 
 \item{...}{passed to \code{\link{dcmdump}}}
 }
