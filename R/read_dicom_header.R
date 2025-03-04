@@ -44,6 +44,7 @@ read_dicom_header = function(
     }
   }
   add_opts = paste(add_opts, collapse = " ")
+  # +E - ignore errors?
   opts = paste("-q --print-all --load-short --print-filename",
                add_opts)
   hdr = dcmdump(file = file,
@@ -58,7 +59,6 @@ read_dicom_header = function(
       warning(msg)
     }
   }
-  fail_on_nonzero_exit
   hdr = enc2utf8(hdr)
   hdr = parse_hdr(hdr)
 
