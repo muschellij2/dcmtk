@@ -44,21 +44,22 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+      
+      - name: Install DCMTK Windows
+        if: runner.os == 'Windows'
+        run: choco install dcmtk -y
 
-      - name: Install DCMTK 
+      - name: Install DCMTK macOS
+        if: runner.os == 'macOS'
         run: |
-          if [ "$RUNNER_OS" == "Linux" ]; then
-            sudo apt-get update
-            sudo apt-get install -y dcmtk
-          elif [ "$RUNNER_OS" == "Windows" ]; then
-            choco install dcmtk -y
-          elif [ "$RUNNER_OS" == "macOS" ]; then
             brew update
-            brew install dcmtk          
-          else
-            echo "$RUNNER_OS not supported"
-            exit 1
-          fi
+            brew install dcmtk  
+
+      - name: Install DCMTK Linux
+        if: runner.os == 'Linux'
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y dcmtk             
 
       - uses: r-lib/actions/check-r-package@v2
         with:
