@@ -1,7 +1,7 @@
 Package: dcmtk
 Type: Package
 Title: Wrapper for 'DICOM' Toolkit ('DCMTK')
-Version: 0.7.1
+Version: 0.8.0
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Set of functions porting the 

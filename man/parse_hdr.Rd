@@ -4,10 +4,14 @@
 \alias{parse_hdr}
 \title{Parse DICOM header}
 \usage{
-parse_hdr(hdr)
+parse_hdr(hdr, convert_non_ascii = TRUE)
 }
 \arguments{
 \item{hdr}{Character vector from \code{\link{dcmdump}}}
+
+\item{convert_non_ascii}{Should [iconv] be run before parsing?  This
+can help failures in UTF-8 issues, but may alter the output from
+[dcmdump()]}
 }
 \value{
 \code{data.frame} of tags and values

@@ -2,6 +2,9 @@
 #' @description Parses a DICOM header to a \code{data.frame}
 #'
 #' @param hdr Character vector from \code{\link{dcmdump}}
+#' @param convert_non_ascii Should [iconv] be run before parsing?  This
+#' can help failures in UTF-8 issues, but may alter the output from
+#' [dcmdump()]
 #'
 #' @return \code{data.frame} of tags and values
 #' @export
@@ -9,10 +12,15 @@
 #' file = system.file("extdata", "example.dcm", package = "dcmtk")
 #' hdr = dcmdump(file)
 #' parsed = parse_hdr(hdr)
-parse_hdr = function(hdr){
+parse_hdr = function(hdr,
+                     convert_non_ascii = TRUE){
   # xhdr = hdr
   #
   # hdr = xhdr
+
+  if (convert_non_ascii) {
+    hdr <- iconv(hdr, from = "latin1", to = "UTF-8", sub = "byte")
+  }
 
   hdr = trimws(hdr)
 
@@ -51,8 +59,8 @@ parse_hdr = function(hdr){
   # hdr = hdr[ tags ]
   # fname = fname[ tags ]
   df$hdr = gsub("Unknown Tag & Data",
-             "UnknownTagAndData",
-             df$hdr, fixed = TRUE)
+                "UnknownTagAndData",
+                df$hdr, fixed = TRUE)
 
 
   ############################
