@@ -45,22 +45,20 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
-      - name: Install DCMTK (Ubuntu - apt-get)
-        if: matrix.os == 'ubuntu-latest'
+      - name: Install DCMTK 
         run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
           sudo apt-get update
           sudo apt-get install -y dcmtk
-
-      - name: Install DCMTK (macOS - brew)
-        if: matrix.os == 'macos-latest'
-        run: |
-          brew update
-          brew install dcmtk
-
-      - name: Install DCMTK (Windows - choco)
-        if: matrix.os == 'windows-latest' || matrix.os == 'windows-2019'
-        run: |
+        elif [ "$RUNNER_OS" == "Windows" ]; then
           choco install dcmtk -y
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+          brew update
+          brew install dcmtk          
+        else
+          echo "$RUNNER_OS not supported"
+          exit 1
+        fi
 
       - uses: r-lib/actions/check-r-package@v2
         with:
