@@ -5,13 +5,9 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/muschellij2/dcmtk/workflows/R-CMD-check/badge.svg)](https://github.com/muschellij2/dcmtk/actions)
-[![Travis-CI Build
-Status](https://travis-ci.org/muschellij2/dcmtk.svg?branch=master)](https://travis-ci.org/muschellij2/dcmtk)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/dcmtk?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/dcmtk)
 [![Coverage
 Status](https://img.shields.io/coveralls/muschellij2/dcmtk.svg)](https://coveralls.io/r/muschellij2/dcmtk?branch=master)
+[![R-CMD-check](https://github.com/muschellij2/dcmtk/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/muschellij2/dcmtk/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `dcmtk` is to wrap the ‘DICOM’ Toolkit (‘DCMTK’)
