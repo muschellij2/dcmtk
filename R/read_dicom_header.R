@@ -60,7 +60,7 @@ read_dicom_header = function(
     }
   }
   hdr = enc2utf8(hdr)
-  hdr = parse_hdr(hdr)
+  hdr = parse_hdr(hdr, convert_non_ascii = TRUE)
 
   if (replace_names) {
     hdr$ind = seq(nrow(hdr))
