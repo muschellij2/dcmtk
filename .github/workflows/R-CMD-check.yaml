@@ -47,18 +47,18 @@ jobs:
 
       - name: Install DCMTK 
         run: |
-        if [ "$RUNNER_OS" == "Linux" ]; then
-          sudo apt-get update
-          sudo apt-get install -y dcmtk
-        elif [ "$RUNNER_OS" == "Windows" ]; then
-          choco install dcmtk -y
-        elif [ "$RUNNER_OS" == "macOS" ]; then
-          brew update
-          brew install dcmtk          
-        else
-          echo "$RUNNER_OS not supported"
-          exit 1
-        fi
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            sudo apt-get update
+            sudo apt-get install -y dcmtk
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            choco install dcmtk -y
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            brew update
+            brew install dcmtk          
+          else
+            echo "$RUNNER_OS not supported"
+            exit 1
+          fi
 
       - uses: r-lib/actions/check-r-package@v2
         with:
